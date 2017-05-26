@@ -33,9 +33,17 @@
         window.onload = function () {
             setIframeHeight(document.getElementById('mainFrame'));
         };
-        function changetitle(tit){
+        function changetitle(tit,e){
 //            document.title=document.getElementById("title").value;
             document.title=tit;
+            var leader = document.getElementsByName("lead");
+            for(i=0;i<leader.length;i++) {
+                if(leader[i].className=="active-menu waves-effect waves-dark") {
+                    leader[i].className="waves-effect waves-dark";
+                }
+            }
+            e.className="active-menu waves-effect waves-dark";
+//            alert(leader.length);
 //            var id=title.id;
 //            document.title="nih2";
 //            alert(document.getElementById(id).value);
@@ -256,26 +264,26 @@
             <ul class="nav" id="main-menu">
 
                 <li>
-                    <a class="active-menu waves-effect waves-dark" href="PersonalData.html" target="mainFrame" onclick="javascript:changetitle('个人资料')"><i
+                    <a class="active-menu waves-effect waves-dark" name="lead" href="PersonalData.html" target="mainFrame" onclick="javascript:changetitle('个人资料',this)"><i
                             class="fa fa-dashboard"></i>
                         个人资料</a>
                 </li>
                 <li>
-                    <a id="qw" href="ScoreQuery.html" class="waves-effect waves-dark" target="mainFrame" onclick="javascript:changetitle('成绩查询')"><i class="fa fa-desktop"></i> 成绩查询</a>
+                    <a id="qw" href="ScoreQuery.html" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('成绩查询',this)"><i class="fa fa-desktop"></i> 成绩查询</a>
                 </li>
                 <li>
-                    <a href="ScoreAnalysis.html" class="waves-effect waves-dark" target="mainFrame" onclick="javascript:changetitle('成绩分析')"><i class="fa fa-bar-chart-o"></i> 成绩分析</a>
+                    <a href="ScoreAnalysis.html" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('成绩分析',this)"><i class="fa fa-bar-chart-o"></i> 成绩分析</a>
                 </li>
                 <li>
-                    <a href="Journal.html" class="waves-effect waves-dark" target="mainFrame" onclick="javascript:changetitle('日志')"><i class="fa fa-qrcode"></i> 日志</a>
+                    <a href="Journal.html" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('日志',this)"><i class="fa fa-qrcode"></i> 日志</a>
                 </li>
 
                 <li>
-                    <a href="RewardsAndPunishment.html" class="waves-effect waves-dark" target="mainFrame" onclick="javascript:changetitle('奖惩')"><i class="fa fa-table"></i>
+                    <a href="RewardsAndPunishment.html" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('奖惩',this)"><i class="fa fa-table"></i>
                         奖惩</a>
                 </li>
                 <li>
-                    <a href="Evaluate.html" class="waves-effect waves-dark" target="mainFrame" onclick="javascript:changetitle('评价')"><i class="fa fa-edit"></i> 评价</a>
+                    <a href="Evaluate.html" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('评价',this)"><i class="fa fa-edit"></i> 评价</a>
                 </li>
 
 
@@ -308,7 +316,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="empty.html" class="waves-effect waves-dark" target="mainFrame" onclick="javascript:changetitle('空白页')"><i class="fa fa-fw fa-file"></i> 空白页 </a>
+                    <a href="empty.html" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('空白页',this)"><i class="fa fa-fw fa-file"></i> 空白页 </a>
                 </li>
             </ul>
 
