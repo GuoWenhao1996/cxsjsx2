@@ -881,19 +881,49 @@ ul.dropdown-menu.dropdown-messages li a div {
     }
 }
 
+/*有关列表显示和写日志的 start*/
 #divmyjournal01 {
     font-size: 20px;
+}
+
+#divmyjournal01-01 {
+    width: 100%;
+    height: 100%;
+    float: left;
+}
+
+#divmyjournal01-01 > div[class="cla01-01"] {
+    float: left;
+}
+
+#divmyjournal01-01 > div[class="cla01-02"] {
+    text-align: right;
+}
+
+#a-edit {
+    margin: auto 1%;
 }
 
 #divmyjournal02 {
     font-size: 20px;
 }
 
+#divmyjournal02-01 > div[class="cla02-01"] {
+    float: left;
+}
+
+#divmyjournal02-01 > div[class="cla02-02"] {
+    text-align: right;
+}
+
+#b-edit {
+    margin: auto 1%;
+}
+
 #divmyjournal03 {
     font-size: 20px;
 }
 
-/*有关列表显示和写日志的 start*/
 #div0 {
     text-align: right;
 }
@@ -902,7 +932,13 @@ ul.dropdown-menu.dropdown-messages li a div {
     margin: 15px 20px;
 }
 
+#write01 > div {
+    float: left;
+    margin: auto 2% auto;
+}
+
 #write01 > form {
+    margin: auto 1% auto;
     text-align: right;
 }
 
@@ -943,6 +979,8 @@ ul.dropdown-menu.dropdown-messages li a div {
     height: 300px;
 }
 
+
+
 /*end*/
 
 /*显示日志 start*/
@@ -957,22 +995,31 @@ ul.dropdown-menu.dropdown-messages li a div {
 }
 
 #div-showtitle > p {
-    font-size: 25px;
+    font-size: 28px;
     text-align: center;
 }
 
 #div-showcontent {
     text-align: center;
-    margin: 5% auto auto;
+    margin: 3% auto auto;
 }
 
-#div-showcontent > div > p {
+#div-showcontent > div {
+    margin: auto auto;
+}
+
+#div-showcontent > div > h4 {
+    width: auto;
+    height: auto;
+    padding-left: 5%;
+    padding-right: 5%;
     text-align: left;
     text-indent: 2em;
+    word-break: break-all; /*整行显示完*/
 }
 
 /*end*/
 
 footer {
-    text-align: center;
+    text-align: right;
 }
