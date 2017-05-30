@@ -1,0 +1,6 @@
+#mainframe{
+    min-height: 600px;
+    /*position:fixed;*/
+    position: relative;
+    float:left;
+}
