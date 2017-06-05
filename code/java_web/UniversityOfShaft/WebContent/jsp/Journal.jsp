@@ -1,4 +1,6 @@
 ﻿<%@page pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%  
 	String path = request.getContextPath();  
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";  
@@ -27,7 +29,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="${path}assets/js/Lightweight-Chart/cssCharts.css">
 </head>
-<body onload="showList()">
+<body onload="listOrShow()">
 <div id="wrapper">
     <div id="page-wrapper">
         <div class="header">
@@ -60,19 +62,22 @@
                                         我的日志
                                     </div>
                                     <div id="divmyjournal01-01" class="collapsible-body">
+                                        <c:forEach var="ds0" items="${list0}" varStatus="vs" >
                                         <div class="cla01-01">
                                             <p>
-                                                <a href="#" onclick="showShow()">第一篇日记</a>
+                                                <a href="/UniversityOfShaft/diaryshow.do?diaryid=${ds0.getL_ID()}" onclick="listOrShow()">${ds0.getL_Title()}</a>
                                             </p>
 
                                         </div>
                                         <div class="cla01-02">
                                             <p>
-                                                <label>2017-05-04(11/66)</label>
-                                                <a id="a-edit" href="#" onclick="writeAgain()">编辑</a>
+                                                <label>${ds0.getL_Time()}(11/66)</label>
+                                                <a name="refresh" style="display: none;">refresh</a>
+                                                <a id="a-edit" href="/UniversityOfShaft/diaryshow.do?diaryid=${ds0.getL_ID()}" onclick="writeAgain()">编辑</a>
                                             </p>
                                         </div>
                                         <div style="clear:both"></div><!--这个层很有用，必须要，否则可能不兼容。-->
+                                        </c:forEach>
                                     </div>
                                 </li>
                                 <li>
@@ -81,18 +86,22 @@
                                         私密日志
                                     </div>
                                     <div id="divmyjournal02-01" class="collapsible-body">
+                                        <c:forEach var="ds1" items="${list1}" varStatus="vs" >
                                         <div class="cla02-01">
                                             <p>
-                                                <a href="#" onclick="showShow()">第一篇私密日志</a>
+                                                <a href="/UniversityOfShaft/diaryshow.do?diaryid=${ds1.getL_ID()}" onclick="listOrShow()">${ds1.getL_Title()}</a>
                                             </p>
                                         </div>
+                                        
                                         <div class="cla02-02">
                                             <p>
-                                                <label>2017-05-04(11/66)</label>
-                                                <a id="b-edit" href="#" onclick="writeAgain()">编辑</a>
+                                                <label>${ds1.getL_Time()}(11/66)</label>
+                                                <a name="refresh" style="display: none;">refresh</a>
+                                                <a id="b-edit" href="/UniversityOfShaft/diaryshow.do?diaryid=${ds1.getL_ID()}" onclick="writeAgain()">编辑</a>
                                             </p>
                                         </div>
                                         <div style="clear:both"></div><!--这个层很有用，必须要，否则可能不兼容。-->
+                                        </c:forEach>
                                     </div>
                                 </li>
                                 <li>
@@ -103,35 +112,35 @@
                                     <div class="collapsible-body">
                                         <!--<p></p>-->
                                         <div>
+											<form action="/UniversityOfShaft/diaryadd.do" method="post">
+											
+                                            	<!--日志标题-->
+                                            	<div id="write02">
+                                                	<div>
+                                                    	<input type="text" name="mytitle" placeholder="这里填写标题！" value="${deTitle}">
+                                                	</div>
+                                            	</div>
 
-                                            <!--日志标题-->
-                                            <div id="write02">
-                                                <div>
-                                                    <input type="text" placeholder="这里填写标题！">
-                                                </div>
-                                            </div>
+                                            	<!--内容-->
+                                            	<div id="write03">
+                                                	<div>
+                                                    	<textarea name="mycontext" placeholder="这里写正文！">${deContent}</textarea>
+                                                	</div>
+                                            	</div>
 
-                                            <!--内容-->
-                                            <div id="write03">
-                                                <div>
-                                                    <textarea placeholder="这里写正文！"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <!--发表-->
-                                            <div id="write01">
-                                                <div>
-                                                    <input type="radio" name="radio01" value="公开">
-                                                    <label>公开</label>
-                                                </div>
-                                                <div>
-                                                    <input type="radio" name="radio01" value="私密">
-                                                    <label>私密</label>
-                                                </div>
-                                                <form>
-                                                    <input type="submit" value="发表">
-                                                </form>
-                                            </div>
+                                            	<!--发表-->
+                                            	<div id="write01">
+                                                	<div>
+                                                    	<input type="radio" name="radio01" value="0">
+                                                    	<label>公开</label>
+                                                	</div>
+                                                	<div>
+                                                    	<input type="radio" name="radio01" value="1">
+                                                    	<label>私密</label>
+                                                	</div>
+                                                	<input type="submit" value="提交"> 
+                                            	</div>
+                                         	</form>
                                         </div>
                                     </div>
                                 </li>
@@ -144,26 +153,19 @@
                 <!--显示日志-->
                 <div id="div-show" class="col-lg-12">
                     <div class="card">
-                        <!--<div id="div0" class="card-action">
-                            列表
-                        </div>-->
                         <div id="div-show01" class="card-action">
-                            <a href="#" onclick="showList()">返回列表</a>
+                            <a href="/UniversityOfShaft/diarylist.do" onclick="listOrShow()">返回列表</a>
                         </div>
 
                         <div class="card-content">
                             <div id="div-show02">
                                 <div id="div-showtitle">
-                                    <p>这是题目</p>
+                                    <p>${deTitle}</p>
                                 </div>
                                 <div id="div-showcontent">
                                     <div>
                                         <h4>
-                                            内容就做个测试吧！zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-                                            zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-                                            zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-                                            zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
-                                            zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+                                        	${deContent}
                                         </h4>
                                     </div>
                                 </div>
@@ -221,19 +223,35 @@
             }
         );
     });
-
-    function showList() {
-        document.getElementById("div-show").style.display = "none";
-        document.getElementById("div-list").style.display = "";
-    }
-
-    function showShow() {
-        document.getElementById("div-list").style.display = "none";
-        document.getElementById("div-show").style.display = "";
-    }
-
+    
+    /* 显示列表还是日志 */
+    function listOrShow() {
+		if("${ow}"=="0"){
+			if("${ref}"=="refresh"){ 
+				document.getElementById("divmyjournal03").click(); 
+			} else {
+			    document.getElementById("div-show").style.display = "none";
+	            document.getElementById("div-list").style.display = "";
+			}
+		}
+		else if("${ow}"=="1") {
+			document.getElementById("div-list").style.display = "none";
+	        document.getElementById("div-show").style.display = "";
+		}
+		else if("${lflush}"=="1") {
+			window.location.href = "/UniversityOfShaft/diarylist.do";
+		}
+	}
+    
+    /* 编辑日志 */
     function writeAgain() {
-        document.getElementById("divmyjournal03").click();
+        /* document.getElementById("divmyjournal03").click(); */
+        var rad = document.getElementsByName("radio01");
+        for(var i=1;i<=rad.length;i++) {
+            if(rad[i].value=="${deLimits}") {
+                rad[i].checked = true;
+            } 
+        }
     }
 
 </script>

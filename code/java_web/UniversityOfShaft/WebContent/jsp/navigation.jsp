@@ -275,7 +275,7 @@
                     <a href="ScoreAnalysis.jsp" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('成绩分析',this)"><i class="fa fa-bar-chart-o"></i> 成绩分析</a>
                 </li>
                 <li>
-                    <a href="Journal.jsp" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('日志',this)"><i class="fa fa-qrcode"></i> 日志</a>
+                    <a href="/UniversityOfShaft/diarylist.do" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('日志',this)"><i class="fa fa-qrcode"></i> 日志</a>
                 </li>
 
                 <li>

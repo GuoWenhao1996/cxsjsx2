@@ -58,7 +58,9 @@
                                             <p>
                                                 <a href="#" onclick="showShow()">第一篇日记</a>
                                             </p>
-
+                                            <p>
+                                                <a href="#" onclick="showShow()">第一篇日记</a>
+                                            </p>
                                         </div>
                                         <div class="cla01-02">
                                             <p>
@@ -77,6 +79,7 @@
                                     <div id="divmyjournal02-01" class="collapsible-body">
                                         <div class="cla02-01">
                                             <p>
+                                                <a id="123" style="display: none"></a>
                                                 <a href="#" onclick="showShow()">第一篇私密日志</a>
                                             </p>
                                         </div>
@@ -97,35 +100,34 @@
                                     <div class="collapsible-body">
                                         <!--<p></p>-->
                                         <div>
+                                            <form>
+                                                <!--日志标题-->
+                                                <div id="write02">
+                                                    <div>
+                                                        <input type="text" placeholder="这里填写标题！">
+                                                    </div>
+                                                </div>
 
-                                            <!--日志标题-->
-                                            <div id="write02">
-                                                <div>
-                                                    <input type="text" placeholder="这里填写标题！">
+                                                <!--内容-->
+                                                <div id="write03">
+                                                    <div>
+                                                        <textarea placeholder="这里写正文！"></textarea>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <!--内容-->
-                                            <div id="write03">
-                                                <div>
-                                                    <textarea placeholder="这里写正文！"></textarea>
-                                                </div>
-                                            </div>
-
-                                            <!--发表-->
-                                            <div id="write01">
-                                                <div>
-                                                    <input type="radio" name="radio01" value="公开">
-                                                    <label>公开</label>
-                                                </div>
-                                                <div>
-                                                    <input type="radio" name="radio01" value="私密">
-                                                    <label>私密</label>
-                                                </div>
-                                                <form>
+                                                <!--发表-->
+                                                <div id="write01">
+                                                    <div>
+                                                        <input type="radio" name="radio01" value="公开">
+                                                        <label>公开</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" name="radio01" value="私密">
+                                                        <label>私密</label>
+                                                    </div>
                                                     <input type="submit" value="发表">
-                                                </form>
-                                            </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </li>
@@ -224,12 +226,19 @@
     function showShow() {
         document.getElementById("div-list").style.display = "none";
         document.getElementById("div-show").style.display = "";
+        document.getElementById("123").innerHTML = "第一篇私密日志";
     }
 
     function writeAgain() {
         document.getElementById("divmyjournal03").click();
+        var rad = document.getElementsByName("radio01");
+        for(var i=1;i<=rad.length;i++) {
+            if(rad[i].value=="私密") {
+                rad[i].checked = true;
+            }
+        }
+        //window.location.href = "";
     }
-
 </script>
 
 

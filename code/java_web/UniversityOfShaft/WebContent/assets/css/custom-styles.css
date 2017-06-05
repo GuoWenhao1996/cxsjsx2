@@ -900,6 +900,10 @@ ul.dropdown-menu.dropdown-messages li a div {
     text-align: right;
 }
 
+#divmyjournal01-01 > div > p {
+    line-height: 5%;
+}
+
 #a-edit {
     margin: auto 1%;
 }
@@ -914,6 +918,10 @@ ul.dropdown-menu.dropdown-messages li a div {
 
 #divmyjournal02-01 > div[class="cla02-02"] {
     text-align: right;
+}
+
+#divmyjournal02-01 > div > p {
+    line-height: 5%;
 }
 
 #b-edit {
@@ -937,12 +945,7 @@ ul.dropdown-menu.dropdown-messages li a div {
     margin: auto 2% auto;
 }
 
-#write01 > form {
-    margin: auto 1% auto;
-    text-align: right;
-}
-
-#write01 > form > input {
+#write01 > input {
     width: 8%;
     height: 4%;
     font-family: "微软雅黑 Light";
@@ -952,9 +955,10 @@ ul.dropdown-menu.dropdown-messages li a div {
     color: white;
     cursor: pointer; /*选中效果*/
     border-radius: 6px;
+    margin-left: 88%;
 }
 
-#write01 > form > input:hover {
+#write01 > input:hover {
     box-shadow: #6fbfff 0px 0px 8px;
 }
 
