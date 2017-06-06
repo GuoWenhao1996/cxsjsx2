@@ -23,7 +23,7 @@ public class ListServlet extends HttpServlet {
 			req.setCharacterEncoding("UTF-8");
 			System.out.println("1111");
 			DiaryDao ddao = new DiaryDao();
-			String strSNo = "631406010102";
+			String strSNo = "6314060101028";
 			//公开日志
 			List<DiaryEntity> lde0 = new ArrayList<>();
 			lde0 = ddao.selectByType(strSNo, "0");

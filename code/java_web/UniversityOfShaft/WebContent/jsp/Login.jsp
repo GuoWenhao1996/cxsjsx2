@@ -17,6 +17,7 @@
 <script type="text/javascript" src="${path}assets/js/Validform_v5.3.2_min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	var $tab_li = $('#tab ul li');
 	$tab_li.hover(function(){
 		$(this).addClass('selected').siblings().removeClass('selected');
@@ -24,145 +25,6 @@ $(document).ready(function(){
 		$('div.tab_box > div').eq(index).show().siblings().hide();
 	});
 });
-</script>
-<script type="text/javascript">
-//$(function(){
-///*学生登录信息验证*/
-//$("#stu_username_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入学号'){
-// $(this).val('');
-// }
-//});
-//$("#stu_username_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入学号');
-// }
-//});
-//$("#stu_password_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入密码'){
-// $(this).val('');
-// }
-//});
-//$("#stu_password_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入密码');
-// }
-//});
-//$("#stu_code_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入验证码'){
-// $(this).val('');
-// }
-//});
-//$("#stu_code_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入验证码');
-// }
-//});
-//$(".stu_login_error").Validform({
-//	tiptype:function(msg,o,cssctl){
-//		var objtip=$(".stu_error_box");
-//		cssctl(objtip,o.type);
-//		objtip.text(msg);
-//	},
-//	ajaxPost:true
-//});
-///*导师登录信息验证*/
-//$("#tea_username_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入教工号'){
-// $(this).val('');
-// }
-//});
-//$("#tea_username_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入教工号');
-// }
-//});
-//$("#tea_password_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入密码'){
-// $(this).val('');
-// }
-//});
-//$("#tea_password_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入密码');
-// }
-//});
-//$("#tea_code_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入验证码'){
-// $(this).val('');
-// }
-//});
-//$("#tea_code_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入验证码');
-// }
-//});
-//$(".tea_login_error").Validform({
-//	tiptype:function(msg,o,cssctl){
-//		var objtip=$(".tea_error_box");
-//		cssctl(objtip,o.type);
-//		objtip.text(msg);
-//	},
-//	ajaxPost:true
-//});
-///*教务登录信息验证*/
-//$("#sec_username_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入教务号'){
-// $(this).val('');
-// }
-//});
-//$("#sec_username_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入教务号');
-// }
-//});
-//$("#sec_password_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入密码'){
-// $(this).val('');
-// }
-//});
-//$("#sec_password_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入密码');
-// }
-//});
-//$("#sec_code_hide").focus(function(){
-// var username = $(this).val();
-// if(username=='输入验证码'){
-// $(this).val('');
-// }
-//});
-//$("#sec_code_hide").focusout(function(){
-// var username = $(this).val();
-// if(username==''){
-// $(this).val('输入验证码');
-// }
-//});
-//$(".sec_login_error").Validform({
-//	tiptype:function(msg,o,cssctl){
-//		var objtip=$(".sec_error_box");
-//		cssctl(objtip,o.type);
-//		objtip.text(msg);
-//	},
-//	ajaxPost:true
-//});
-//});
 </script>
 <script type="text/javascript">
 $(function(){
@@ -206,7 +68,7 @@ $(function(){
     <!-- 学生登录开始 -->
     <div>
       <div class="stu_error_box"></div>
-      <form   action="navigation.jsp" method="post" class="stu_login_error">
+      <form   action="/UniversityOfShaft/StuLogin.do" method="post" class="stu_login_error">
         <div id="username">
           <label>学&nbsp;&nbsp;&nbsp;号：</label>
           <input type="text" id="stu_username_hide" name="username" placeholder="输入学号" nullmsg="学号不能为空！" datatype="s6-18" errormsg="学号范围在6~18个字符之间！" sucmsg="学号验证通过！" class="input"/>

@@ -29,7 +29,7 @@ public class AddServlet extends HttpServlet {
 			DiaryDao ddao = new DiaryDao();
 			DiaryEntity de = new DiaryEntity();
 			de.setL_ID(DBUtil.uuid());
-			de.setStu_SNo("631406010102");
+			de.setStu_SNo("631406010128");
 			de.setL_Time(DBUtil.toNormalStringDate(new Date().toString()));
 			de.setL_Title(strTitle);
 			de.setL_Detail(strContext);

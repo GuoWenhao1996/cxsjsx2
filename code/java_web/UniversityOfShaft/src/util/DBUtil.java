@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class DBUtil {
 	private static final String USER = "root";
-	private static final String PASSWROD = "9527";
+	private static final String PASSWROD = "root";
 	private static final String URL="jdbc:mysql://127.0.0.1:3306/db_dxz";
 	private static final ThreadLocal<Connection> THREAD_LOCAL=new ThreadLocal<Connection>();
 	
