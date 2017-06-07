@@ -1,4 +1,4 @@
-﻿<%@page pageEncoding="utf-8"%>
+<%@page pageEncoding="utf-8"%>
 <%@page import="util.DBUtil" %>
 <%
 	String path = request.getContextPath();
@@ -121,7 +121,7 @@
 						class="fa fa-bell fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
 				<li><a class="dropdown-button waves-effect waves-dark"
 					href="#!" data-activates="dropdown1"><i
-						class="fa fa-user fa-fw"></i> <b><%=name %></b> <i
+						class="fa fa-user fa-fw"></i> <b>${username}</b> <i
 						class="material-icons right">arrow_drop_down</i></a></li>
 			</ul>
 		</nav>
@@ -299,7 +299,7 @@
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('奖惩',this)"><i
 							class="fa fa-table"></i> 奖惩</a></li>
-					<li><a href="/UniversityOfShaft/listAssess.do" class="waves-effect waves-dark"
+					<li><a href="Evaluate.jsp" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('评价',this)"><i
 							class="fa fa-edit"></i> 评价</a></li>

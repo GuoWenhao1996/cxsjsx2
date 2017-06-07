@@ -1,4 +1,4 @@
-package servlet.loginservlet;
+﻿package servlet.loginservlet;
 
 import java.io.IOException;
 
@@ -42,7 +42,6 @@ public class StuLoginServlet extends HttpServlet{
 			Cookie cookieNo = new Cookie("cookieNo", account); 
 			cookieNo.setMaxAge(60*1);;
 			res.addCookie(cookieNo);
-			req.setAttribute("username",account);
 			req.getRequestDispatcher("/jsp/navigation.jsp").forward(req, res);
 			return;
 		}catch(ThisSystemException e){
