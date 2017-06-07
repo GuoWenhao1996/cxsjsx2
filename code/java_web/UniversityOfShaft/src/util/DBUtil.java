@@ -1,9 +1,15 @@
-﻿package util;
+package util;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.UUID;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 
 public class DBUtil {
 	private static final String USER = "root";
@@ -66,6 +72,43 @@ public class DBUtil {
 			}
 		}
 		return new String(cs);
+	}
+	
+	/**
+	 * 转换为正常的时间格式
+	 * @param strdate
+	 * @return
+	 * @throws Exception
+	 */
+	public static String toNormalStringDate(String strdate) throws Exception {
+		SimpleDateFormat sdf1= new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+
+		SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		return sdf2.format(sdf1.parse(strdate));
+	}
+	/**
+	 * 返回cookie存储的学号对象
+	 * @param request
+	 * @return 已登录的学号
+	 * @throws UnsupportedEncodingException
+	 */
+	public static String getCookieno(HttpServletRequest request) throws UnsupportedEncodingException{
+		String name=null;
+		System.out.println("进入");
+		Cookie Cookies[] = request.getCookies();
+		if (Cookies != null) {
+			for (int n = 0; n < Cookies.length; n++) {
+				Cookie newCookie = Cookies[n];
+				System.out.println("寻找");
+				if (newCookie.getName().equals("cookieNo")) {
+					System.out.println("找到");
+					name = newCookie.getValue();
+					name = java.net.URLDecoder.decode(name, "UTF-8");
+				}
+			}
+		}
+		return name;
 	}
 
 }

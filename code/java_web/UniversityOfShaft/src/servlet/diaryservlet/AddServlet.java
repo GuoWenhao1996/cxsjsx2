@@ -13,7 +13,6 @@ import dao.DiaryDao;
 import entity.DiaryEntity;
 import util.DBUtil;
 import util.ThisSystemException;
-import util.ThisSystemUtil;
 
 @WebServlet("/diaryadd.do")
 public class AddServlet extends HttpServlet {
@@ -30,13 +29,13 @@ public class AddServlet extends HttpServlet {
 			DiaryDao ddao = new DiaryDao();
 			DiaryEntity de = new DiaryEntity();
 			de.setL_ID(DBUtil.uuid());
-			de.setStu_SNo("631406010102");
-			de.setL_Time(ThisSystemUtil.toNormalStringDate(new Date().toString()));
+			de.setStu_SNo("631406010128");
+			de.setL_Time(DBUtil.toNormalStringDate(new Date().toString()));
 			de.setL_Title(strTitle);
 			de.setL_Detail(strContext);
 			de.setL_Limits(strLimits);
 			ddao.insert(de);
-			req.setAttribute("lflush", "1"); //用于标记用户写了新的日记，需要刷新列表
+			req.setAttribute("lflush", "1"); //用于刷新刚提交新日志后的列表，1表示需要刷新，0则不需要
 			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (ThisSystemException e){
 			req.setAttribute("message", e.getMessage());
