@@ -38,10 +38,6 @@
         };
         window.onload = function () {
             setIframeHeight(document.getElementById('mainFrame'));
-            /*if(${username}==null){
-            	alert("您尚未登录");
-            	window.navigate("login.jsp"); 
-            }   */   	
         };
         function changetitle(tit,e){
             document.title=tit;
@@ -81,7 +77,7 @@
             <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown2"><i
                     class="fa fa-bell fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i
-                    class="fa fa-user fa-fw"></i> <b>${username}</b> <i
+                    class="fa fa-user fa-fw"></i> <b>John Doe</b> <i
                     class="material-icons right">arrow_drop_down</i></a></li>
         </ul>
     </nav>
@@ -287,7 +283,7 @@
                         奖惩</a>
                 </li>
                 <li>
-                    <a href="/UniversityOfShaft/listAssess.do" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('评价',this)"><i class="fa fa-edit"></i> 评价</a>
+                    <a href="Evaluate.jsp" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('评价',this)"><i class="fa fa-edit"></i> 评价</a>
                 </li>
 
 
@@ -329,7 +325,7 @@
     </nav>
     <!-- /. NAV SIDE  -->
 
-    <iframe src="${path}jsp/PersonalData.jsp" id="mainFrame" name="mainFrame" width="100%" scrolling="no"
+    <iframe src="PersonalData.jsp" id="mainFrame" name="mainFrame" width="100%" scrolling="no"
             frameborder="no"></iframe>
     <!-- /. PAGE WRAPPER  -->
 </div>

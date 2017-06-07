@@ -20,18 +20,16 @@ public class ShowServlet extends HttpServlet {
 		try {
 			req.setCharacterEncoding("UTF-8");
 			String diaryId = req.getParameter("diaryid"); //用于找到对应的日志
-			String ref = req.getParameter("refresh"); //说明是点击的编辑，用于判断
-			System.out.println(diaryId);
+			//System.out.println(diaryId);
 			DiaryDao ddao = new DiaryDao();
 			DiaryEntity de = ddao.showDiary(diaryId);
 			req.setAttribute("deTitle", de.getL_Title());
 			req.setAttribute("deContent", de.getL_Detail());
 			req.setAttribute("deLimits", de.getL_Limits());
-			System.out.println(de.getL_Title());
-			System.out.println(de.getL_Detail());
-			System.out.println(de.getL_Limits());
-			req.setAttribute("ow", "1");
-			req.setAttribute("ref", ref);
+			//System.out.println(de.getL_Title());
+			//System.out.println(de.getL_Detail());
+			//System.out.println(de.getL_Limits());
+			req.setAttribute("ow", "1"); //说明用户点击了查看某一篇日志，作为打开某一篇日志的标志
 			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
