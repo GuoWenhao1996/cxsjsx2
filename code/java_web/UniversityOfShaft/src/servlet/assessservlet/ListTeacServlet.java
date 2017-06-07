@@ -29,15 +29,28 @@ public class ListTeacServlet extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
 			req.setCharacterEncoding("UTF-8");
-			
-			AssessDao assDao=new AssessDao();
-			String sno="631406010109";
-			
-			//教师对学生的评价
-			List<AssessEntity> assTeac=new ArrayList<>();
-			assTeac=assDao.selectBySNoFromTeacAss(sno);
+
+			AssessDao assDao = new AssessDao();
+			String sno = "631406010109";
+
+			// 教师对学生的评价
+			List<AssessEntity> assTeac = new ArrayList<>();
+			assTeac = assDao.selectBySNoFromTeacAss(sno);
 			req.setAttribute("aT", assTeac);
-			
+
+			// 学生对学生的评价
+			List<AssessEntity> assStu = new ArrayList<>();
+			assStu = assDao.selectBySNoFromStuAss(sno);
+			req.setAttribute("aS", assStu);
+
+			// 自我评价
+			String selfAss = assDao.showSelfAssess(sno);
+			req.setAttribute("sA", selfAss);
+
+			// 学生列表
+			String[][] stuArrayAss = assDao.selectAllStuAss();
+			req.setAttribute("sAA", stuArrayAss);
+
 			req.getRequestDispatcher("/jsp/Evaluate.jsp").forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -96,30 +96,14 @@
 										</div>
 										<div class="card-image">
 											<ul class="collection">
-												<li class="collection-item avatar"><i
-													class="material-icons circle green">perm_identity</i> <span
-													class="title">张三</span> 计科一班
-													<p>
-														2017年5月9日 23:53:30 <br> <b>这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情！</b>
-													</p> <i class="material-icons secondary-content">室友</i></li>
-												<li class="collection-item avatar"><i
-													class="material-icons circle green">perm_identity</i> <span
-													class="title">李四</span> 物联一班
-													<p>
-														2017年5月9日 23:53:24 <br> <b>这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情！</b>
-													</p> <i class="material-icons secondary-content">同学</i></li>
-												<li class="collection-item avatar"><i
-													class="material-icons circle green">perm_identity</i> <span
-													class="title">王五</span> 计科二班
-													<p>
-														2017年5月9日 23:53:14 <br> <b>这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情！</b>
-													</p> <i class="material-icons secondary-content">同学</i></li>
-												<li class="collection-item avatar"><i
-													class="material-icons circle green">perm_identity</i> <span
-													class="title">赵六</span> 计科一班
-													<p>
-														2017年5月9日 23:53:03 <br> <b>这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情这个同学很热情！</b>
-													</p> <i class="material-icons secondary-content">班长</i></li>
+												<c:forEach var="as0" items="${aS}" varStatus="vs">
+													<li class="collection-item avatar"><i
+														class="material-icons circle green">perm_identity</i> <span
+														class="title">${as0.getA_PersonNo()}</span> 计科一班
+														<p>
+															${as0.getA_DataTime()} <br> <b>${as0.getA_Context()}</b>
+														</p> <i class="material-icons secondary-content">室友</i></li>
+												</c:forEach>
 											</ul>
 										</div>
 									</div>
@@ -132,12 +116,11 @@
 											</h4>
 										</div>
 										<div class="card-content">
-											<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！我是一个好孩子，感觉自己萌萌哒！</p>
+											<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${sA}</p>
 											<div style="margin-top: 20px; margin-left: 10px">
 												<a class="waves-effect waves-light btn"><i
 													class="material-icons left">mode_edit</i>修改</a>
 											</div>
-
 										</div>
 									</div>
 								</div>
@@ -155,98 +138,21 @@
 													id="dataTables-TeacherEvaluate">
 													<thead>
 														<tr>
-															<th>姓名</th>
 															<th>学号</th>
-															<th>专业</th>
+															<th>姓名</th>
 															<th>班级</th>
 															<th>操作</th>
 														</tr>
 													</thead>
 													<tbody>
-														<tr class="odd gradeX">
-															<td>张三</td>
-															<td>6314060101xx</td>
-															<td>计算机科学与技术</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>张三</td>
-															<td>6314060101xx</td>
-															<td>计算机科学与技术</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="odd gradeX">
-															<td>张三</td>
-															<td>6314060101xx</td>
-															<td>计算机科学与技术</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>张三</td>
-															<td>6314060101xx</td>
-															<td>计算机科学与技术</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="odd gradeX">
-															<td>张三</td>
-															<td>6314060101xx</td>
-															<td>计算机科学与技术</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>张三</td>
-															<td>6314060101xx</td>
-															<td>计算机科学与技术</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="odd gradeX">
-															<td>张三</td>
-															<td>6314060301xx</td>
-															<td>物联网工程</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>张三</td>
-															<td>6314060301xx</td>
-															<td>物联网工程</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="odd gradeX">
-															<td>张三</td>
-															<td>6314060301xx</td>
-															<td>物联网工程</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>张三</td>
-															<td>6314060301xx</td>
-															<td>物联网工程</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="odd gradeX">
-															<td>张三</td>
-															<td>6314060301xx</td>
-															<td>物联网工程</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>张三</td>
-															<td>6314060301xx</td>
-															<td>物联网工程</td>
-															<td>14级1班</td>
-															<td><a href="#">评价</a></td>
-														</tr>
+														<c:forEach var="as0" items="${sAA}" varStatus="vs">
+															<tr class="odd gradeX">
+																<td>${sAA[1][0]}</td>
+																<td>${vs.count}</td>
+																<td>${as0}</td>
+																<td><a href="#">评价</a></td>
+															</tr>
+														</c:forEach>
 													</tbody>
 												</table>
 											</div>
