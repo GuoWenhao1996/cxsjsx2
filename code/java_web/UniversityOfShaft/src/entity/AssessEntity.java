@@ -31,14 +31,6 @@ public class AssessEntity {
 		Stu_SNo = stu_SNo;
 	}
 
-	public String getA_PersonNo() {
-		return A_PersonNo;
-	}
-
-	public void setA_PersonNo(String a_PersonNo) {
-		A_PersonNo = a_PersonNo;
-	}
-
 	public String getA_DataTime() {
 		return A_DataTime;
 	}
@@ -53,6 +45,14 @@ public class AssessEntity {
 
 	public void setA_Context(String a_Context) {
 		A_Context = a_Context;
+	}
+
+	public String getA_PersonNo() {
+		return A_PersonNo;
+	}
+
+	public void setA_PersonNo(String a_PersonNo) {
+		A_PersonNo = a_PersonNo;
 	}
 
 	public String toString() {

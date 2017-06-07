@@ -1,17 +1,19 @@
 package test;
 
+import java.util.List;
+
 import dao.AssessDao;
 import entity.AssessEntity;
 import util.DBUtil;
 import util.ThisSystemUtil;
 
 /**
- * 2017-6-7 01:04:29
+ * 2017-6-7 10:33:56
  * 
  * 评价测试类，用于测试实体、dao
  * 
  * @author guowenhao
- * @version 1.3
+ * @version 1.4
  */
 public class AssessTest {
 	public static void main(String[] args) throws Exception {
@@ -45,10 +47,21 @@ public class AssessTest {
 		// //修改自我评价测试
 		// ad.updateStuSelfAss(ae2);
 
-		// 数据库内容转化为实体测试
-		AssessEntity ae1 = ad.showAssess("3fb1ad3206fa37d97d24d30bd41ca7be");
-		AssessEntity ae2 = ad.showAssess("45d44fa3113c640b9d3449de617b058f");
-		System.out.println(ae1.toString());
-		System.out.println(ae2.toString());
+//		// 数据库内容转化为实体测试
+//		AssessEntity ae1 = ad.showAssess("3fb1ad3206fa37d97d24d30bd41ca7be");
+//		AssessEntity ae2 = ad.showAssess("45d44fa3113c640b9d3449de617b058f");
+//		System.out.println(ae1.toString());
+//		System.out.println(ae2.toString());
+		
+		List<AssessEntity> la= ad.selectBySNoFromTeacAss("631406010109");
+		System.out.println(la.size());
+		System.out.println(la.get(0).getA_Context());
+		System.out.println(la.get(1).getA_Context());
+		System.out.println(la.get(2).getA_Context());
+		System.out.println(la.get(3).getA_Context());
+		System.out.println(la.get(3).getA_DataTime());
+		System.out.println(la.get(3).getA_PersonNo());
+		
+		
 	}
 }

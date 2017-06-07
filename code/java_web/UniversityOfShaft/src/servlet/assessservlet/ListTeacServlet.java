@@ -1,0 +1,46 @@
+package servlet.assessservlet;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.AssessDao;
+import entity.AssessEntity;
+
+/**
+ * 2017-6-7 11:19:40
+ * 
+ * 教师对学生的评价列表，用于页面跳转时显示
+ * 
+ * @author guowenhao
+ * @version 2.0
+ */
+@WebServlet("/listAssess.do")
+public class ListTeacServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		try {
+			req.setCharacterEncoding("UTF-8");
+			
+			AssessDao assDao=new AssessDao();
+			String sno="631406010109";
+			
+			//教师对学生的评价
+			List<AssessEntity> assTeac=new ArrayList<>();
+			assTeac=assDao.selectBySNoFromTeacAss(sno);
+			req.setAttribute("aT", assTeac);
+			
+			req.getRequestDispatcher("/jsp/Evaluate.jsp").forward(req, res);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

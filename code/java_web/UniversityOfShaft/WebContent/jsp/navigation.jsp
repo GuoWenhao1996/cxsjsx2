@@ -287,7 +287,7 @@
                         奖惩</a>
                 </li>
                 <li>
-                    <a href="Evaluate.jsp" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('评价',this)"><i class="fa fa-edit"></i> 评价</a>
+                    <a href="/UniversityOfShaft/listAssess.do" class="waves-effect waves-dark" name="lead" target="mainFrame" onclick="javascript:changetitle('评价',this)"><i class="fa fa-edit"></i> 评价</a>
                 </li>
 
 
