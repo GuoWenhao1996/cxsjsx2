@@ -1,6 +1,7 @@
 package util;
 
 import java.security.MessageDigest;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -59,5 +60,17 @@ public class ThisSystemUtil {
             e.printStackTrace();  
             return "";  
         }  
-    }  
+    }
+	/**
+	 * 获取当前系统时间工具方法
+	 * 
+	 * @return yyyy-MM-dd HH:mm:ss格式的时间
+	 * @author guowenhao
+	 */
+	public static String getSystemTime() {
+		Date date = new Date();
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time = format.format(date);
+		return time;
+	}  
 }
