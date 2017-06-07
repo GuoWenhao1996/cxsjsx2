@@ -1,10 +1,8 @@
-package util;
+﻿package util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.UUID;
 
 public class DBUtil {
@@ -68,20 +66,6 @@ public class DBUtil {
 			}
 		}
 		return new String(cs);
-	}
-	
-	/**
-	 * 转换为正常的时间格式
-	 * @param strdate
-	 * @return
-	 * @throws Exception
-	 */
-	public static String toNormalStringDate(String strdate) throws Exception {
-		SimpleDateFormat sdf1= new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-
-		SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-		return sdf2.format(sdf1.parse(strdate));
 	}
 
 }
