@@ -56,8 +56,13 @@ public class DiaryDao {
 		return delist;
 	}
 	
+	/**
+	 * 通过日志ID找到相应日志
+	 * @param lid
+	 * @return
+	 * @throws Exception
+	 */
 	public DiaryEntity showDiary(String lid) throws Exception {
-		//DiaryEntity de = new DiaryEntity();
 		Connection connection = DBUtil.getConnection();
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select * from t_stulog where L_ID=?");
@@ -66,6 +71,45 @@ public class DiaryDao {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 	    return (this.rowsEntity(rs));
+	}
+	
+	/**
+	 * 更新某篇日志
+	 * @param de
+	 * @throws Exception
+	 */
+	public void updateDiary(DiaryEntity de) throws Exception {
+		//连接数据库
+		Connection connection = DBUtil.getConnection();
+		//构建sql语句
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update t_stulog ").append("set L_Time=?, L_Title=?, L_Detail=?, L_Limits=? ")
+			.append("where L_ID=?");
+		//传入sql参数
+		PreparedStatement ps = connection.prepareStatement(sql.toString());
+		ps.setString(1, de.getL_Time());
+		ps.setString(2, de.getL_Title());
+		ps.setString(3, de.getL_Detail());
+		ps.setString(4, de.getL_Limits());
+		ps.setString(5, de.getL_ID());
+		ps.executeUpdate(); //执行
+	}
+	
+	/**
+	 * 根据日志id删去某篇日志
+	 * @param lid
+	 * @throws Exception
+	 */
+	public void deleteDiary(String lid) throws Exception {
+		//连接数据库
+		Connection connection = DBUtil.getConnection();
+		//构建sql语句
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete from t_stulog where L_ID=? ");
+		//传入sql参数
+		PreparedStatement ps = connection.prepareStatement(sql.toString());
+		ps.setString(1, lid);
+		ps.executeUpdate();
 	}
 	
 	/**
