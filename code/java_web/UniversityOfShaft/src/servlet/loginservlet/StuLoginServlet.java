@@ -7,7 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import dao.StuloginDao;
 import entity.StuloginEntity;
@@ -16,7 +15,8 @@ import util.ThisSystemUtil;
 
 @WebServlet("/StuLogin.do")
 public class StuLoginServlet extends HttpServlet{
-	
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try{

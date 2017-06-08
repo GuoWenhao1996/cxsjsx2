@@ -253,6 +253,7 @@
 		}
 	}
 
+    /* 添加或者修改日记 */
     function addOrEdit() {
     	var myform0 = document.getElementById("formsubmit");
     	var mysubid = document.getElementById("mysubmitid");

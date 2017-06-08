@@ -325,7 +325,7 @@
     </nav>
     <!-- /. NAV SIDE  -->
 
-    <iframe src="PersonalData.jsp" id="mainFrame" name="mainFrame" width="100%" scrolling="no"
+    <iframe src="${path}jsp/PersonalData.jsp" id="mainFrame" name="mainFrame" width="100%" scrolling="no"
             frameborder="no"></iframe>
     <!-- /. PAGE WRAPPER  -->
 </div>
