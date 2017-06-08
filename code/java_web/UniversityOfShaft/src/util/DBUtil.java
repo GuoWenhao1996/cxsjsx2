@@ -4,8 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.Cookie;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class DBUtil {
 	private static final String USER = "root";
-	private static final String PASSWROD = "9527";
+	private static final String PASSWROD = "root";
 	private static final String URL="jdbc:mysql://127.0.0.1:3306/db_dxz";
 	private static final ThreadLocal<Connection> THREAD_LOCAL=new ThreadLocal<Connection>();
 	
@@ -73,20 +71,7 @@ public class DBUtil {
 		}
 		return new String(cs);
 	}
-	
-	/**
-	 * 转换为正常的时间格式
-	 * @param strdate
-	 * @return
-	 * @throws Exception
-	 */
-	public static String toNormalStringDate(String strdate) throws Exception {
-		SimpleDateFormat sdf1= new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
 
-		SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-		return sdf2.format(sdf1.parse(strdate));
-	}
 	/**
 	 * 返回cookie存储的学号对象
 	 * @param request
@@ -110,5 +95,4 @@ public class DBUtil {
 		}
 		return name;
 	}
-
 }

@@ -339,19 +339,8 @@
 	<!-- jQuery Js -->
 	<script src="${path}assets/js/jquery-1.10.2.js"></script>
 
-<<<<<<< HEAD
-    <iframe src="${path}jsp/PersonalData.jsp" id="mainFrame" name="mainFrame" width="100%" scrolling="no"
-            frameborder="no"></iframe>
-    <!-- /. PAGE WRAPPER  -->
-</div>
-<!-- /. WRAPPER  -->
-<!-- JS Scripts-->
-<!-- jQuery Js -->
-<script src="${path}assets/js/jquery-1.10.2.js"></script>
-=======
 	<!-- Bootstrap Js -->
 	<script src="${path}assets/js/bootstrap.min.js"></script>
->>>>>>> origin/master
 
 	<script src="${path}assets/materialize/js/materialize.min.js"></script>
 
