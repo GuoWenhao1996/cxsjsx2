@@ -1,34 +1,14 @@
 package util;
 
 import java.security.MessageDigest;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 public class ThisSystemUtil {
 
-	/**
-	 * å­—ç¬¦ä¸²æ˜¯å¦ä¸ºç©º
-	 * @param s
-	 * @return
-	 */
 	public static boolean isNone(String s){
 		return s==null||(s.trim()).length()==0;
-	}
-	
-	/**
-	 * è½¬æ¢ä¸ºæ­£å¸¸çš„æ—¶é—´æ ¼å¼
-	 * @param strdate
-	 * @return
-	 * @throws Exception
-	 * @author è«å¤©é‡‘
-	 */
-	public static String toNormalStringDate(String strdate) throws Exception {
-		SimpleDateFormat sdf1= new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-
-		SimpleDateFormat sdf2= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-		return sdf2.format(sdf1.parse(strdate));
 	}
 	
 	public static int parseInt(String s,int defaultValue){
@@ -39,7 +19,6 @@ public class ThisSystemUtil {
 			return defaultValue;	
 		}
 	}
-	
 	public static int totalPage(int total,int pageSize){
 		int page=total/pageSize;
 		if(total%pageSize!=0){
@@ -61,25 +40,37 @@ public class ThisSystemUtil {
 	
 	public static String md5Password(String password) {    
         try {  
-            // å¾—åˆ°ä¸€ä¸ªä¿¡æ¯æ‘˜è¦å™¨  
+            // µÃµ½Ò»¸öĞÅÏ¢ÕªÒªÆ÷  
             MessageDigest digest = MessageDigest.getInstance("md5");  
             byte[] result = digest.digest(password.getBytes());  
             StringBuffer buffer = new StringBuffer();  
-            // æŠŠæ²¡ä¸€ä¸ªbyte åšä¸€ä¸ªä¸è¿ç®— 0xff;  
+            // °ÑÃ»Ò»¸öbyte ×öÒ»¸öÓëÔËËã 0xff;  
             for (byte b : result) {  
-                // ä¸è¿ç®—  
-                int number = b & 0xff;// åŠ ç›  
+                // ÓëÔËËã  
+                int number = b & 0xff;// ¼ÓÑÎ  
                 String str = Integer.toHexString(number);  
                 if (str.length() == 1) {  
                     buffer.append("0");  
                 }  
                 buffer.append(str);  
             }  
-            // æ ‡å‡†çš„md5åŠ å¯†åçš„ç»“æœ  
+            // ±ê×¼µÄmd5¼ÓÃÜºóµÄ½á¹û  
             return buffer.toString();  
         } catch (Exception e) {  
             e.printStackTrace();  
             return "";  
         }  
-    }  
+    }
+	/**
+	 * »ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä¹¤¾ß·½·¨
+	 * 
+	 * @return yyyy-MM-dd HH:mm:ss¸ñÊ½µÄÊ±¼ä
+	 * @author guowenhao
+	 */
+	public static String getSystemTime() {
+		Date date = new Date();
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time = format.format(date);
+		return time;
+	}  
 }

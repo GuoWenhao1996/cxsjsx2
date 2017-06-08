@@ -78,12 +78,14 @@ public class AssessDao {
 	/**
 	 * 修改自我评价
 	 * 
-	 * @param ae
-	 *            评价实体
+	 * @param sno
+	 *            学号
+	 * @param ass
+	 *            自我评价内容
 	 * @throws Exception
 	 *             系统异常
 	 */
-	public void updateStuSelfAss(AssessEntity ae) throws Exception {
+	public void updateStuSelfAss(String sno, String ass) throws Exception {
 		// 获取数据库连接
 		Connection connection = DBUtil.getConnection();
 
@@ -92,8 +94,8 @@ public class AssessDao {
 		sql.append(" update t_stuinfo ").append(" set  Stu_Assess=? ").append(" where Stu_SNo=? ");
 		// 为sql传入参数
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
-		ps.setString(1, ae.getA_Context());
-		ps.setString(2, ae.getStu_SNo());
+		ps.setString(1, ass);
+		ps.setString(2, sno);
 		// 执行sql
 		ps.executeUpdate();
 	}

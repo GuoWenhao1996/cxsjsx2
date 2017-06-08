@@ -1,9 +1,10 @@
-package servlet.loginservlet;
+﻿package servlet.loginservlet;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,10 +38,11 @@ public class StuLoginServlet extends HttpServlet{
 			if(!u.getUS_Password().equals(password)){
 				throw new ThisSystemException("密码错误");
 			}			
-			System.out.println(2);
 			req.setAttribute("userno", account);
 			req.setAttribute("username", u.getUS_Name());
-//			req.getRequestDispatcher("/jsp/PersonalData.jsp").forward(req, res);
+			Cookie cookieNo = new Cookie("cookieNo", account); 
+			cookieNo.setMaxAge(60*1);;
+			res.addCookie(cookieNo);
 			req.getRequestDispatcher("/jsp/navigation.jsp").forward(req, res);
 			return;
 		}catch(ThisSystemException e){

@@ -36,7 +36,7 @@
 <link rel="stylesheet"
 	href="${path}assets/js/Lightweight-Chart/cssCharts.css">
 </head>
-<body>
+<body onload="hideOrShow()">
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="header">
@@ -118,9 +118,27 @@
 										<div class="card-content">
 											<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${sA}</p>
 											<div style="margin-top: 20px; margin-left: 10px">
-												<a class="waves-effect waves-light btn"><i
+												<a onclick="hideOrShow()"
+													class="waves-effect waves-light btn"><i
 													class="material-icons left">mode_edit</i>修改</a>
 											</div>
+
+										</div>
+										<div class="card-content" id="alterSelfAss">
+											<form action="/UniversityOfShaft/UpdateSelfAssess.do"
+												method="post">
+												<!--内容-->
+												<div id="write03">
+													<div>
+														<textarea id="selfAssess" name="selfAssess" placeholder="这里写对自己的评价！"></textarea>
+													</div>
+												</div>
+												<!--提交-->
+												<div style="margin-top: 5px; margin-left: 80%">
+													<input class="waves-effect waves-light btn" type="submit"
+														value="保存" onclick="isNull()">
+												</div>
+											</form>
 										</div>
 									</div>
 								</div>
@@ -147,9 +165,9 @@
 													<tbody>
 														<c:forEach var="as0" items="${sAA}" varStatus="vs">
 															<tr class="odd gradeX">
-																<td>${sAA[1][0]}</td>
-																<td>${vs.count}</td>
-																<td>${as0}</td>
+																<td>${sAA[vs.index][0]}</td>
+																<td>${sAA[vs.index][1]}</td>
+																<td>${sAA[vs.index][2]}</td>
 																<td><a href="#">评价</a></td>
 															</tr>
 														</c:forEach>
@@ -211,6 +229,21 @@
 	<!-- Custom Js -->
 	<script src="${path}assets/js/custom-scripts.js"></script>
 
+	<script>
+		/* 是否显示自我评价的编辑框 */
+		function hideOrShow() {
+			if (document.getElementById("alterSelfAss").style.display == "")
+				document.getElementById("alterSelfAss").style.display = "none";
+			else
+				document.getElementById("alterSelfAss").style.display = "";
+		}
+
+		/* 判断是否为空 */
+		function isNull() {
+			if (document.getElementById("selfAssess").value == "")
+				confirm("自我评价为空？");
+		}
+	</script>
 
 </body>
 
