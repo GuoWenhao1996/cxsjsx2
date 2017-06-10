@@ -16,8 +16,7 @@ import util.ThisSystemUtil;
 
 @WebServlet("/StuLogin.do")
 public class StuLoginServlet extends HttpServlet{
-	private static final long serialVersionUID = 1L;
-
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try{
@@ -41,7 +40,11 @@ public class StuLoginServlet extends HttpServlet{
 			req.setAttribute("userno", account);
 			req.setAttribute("username", u.getUS_Name());
 			Cookie cookieNo = new Cookie("cookieNo", account); 
+<<<<<<< HEAD
 			cookieNo.setMaxAge(60*30);;
+=======
+			cookieNo.setMaxAge(60*60);
+>>>>>>> origin/master
 			res.addCookie(cookieNo);
 			req.getRequestDispatcher("/jsp/navigation.jsp").forward(req, res);
 			return;

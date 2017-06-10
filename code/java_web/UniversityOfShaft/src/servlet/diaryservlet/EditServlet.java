@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.DiaryDao;
 import entity.DiaryEntity;
+import util.DBUtil;
 
 @WebServlet("/diaryedit.do")
 public class EditServlet extends HttpServlet {
@@ -22,7 +23,8 @@ public class EditServlet extends HttpServlet {
 		try {
 			req.setCharacterEncoding("UTF-8");
 			DiaryDao ddao = new DiaryDao();
-			String strSNo = "631406010102";
+			String strSNo = DBUtil.getCookieno(req);
+			//String strSNo = "631406010102";
 			String diaryId = req.getParameter("diaryid"); //用于找到对应的日志
 			//用于刷新列表 start
 			//公开日志

@@ -72,8 +72,8 @@
                                         <div class="cla01-02">
                                             <p>
                                                 <label>${ds0.getL_Time()}(11/66)</label>
-                                                <a name="refresh" style="display: none;">refresh</a>
-                                                <a id="a-edit" href="/UniversityOfShaft/diaryshow.do?diaryid=${ds0.getL_ID()}" onclick="writeAgain()">编辑</a>
+                                                <a id="a-edit" href="/UniversityOfShaft/diaryedit.do?diaryid=${ds0.getL_ID()}">编辑</a>
+                                                <a id="a-delete" href="/UniversityOfShaft/diarydelete.do?diaryid=${ds0.getL_ID()}">删除</a>
                                             </p>
                                         </div>
                                         <div style="clear:both"></div><!--这个层很有用，必须要，否则可能不兼容。-->
@@ -89,15 +89,15 @@
                                         <c:forEach var="ds1" items="${list1}" varStatus="vs" >
                                         <div class="cla02-01">
                                             <p>
-                                                <a href="/UniversityOfShaft/diaryshow.do?diaryid=${ds1.getL_ID()}" onclick="listOrShow()">${ds1.getL_Title()}</a>
+                                                <a href="/UniversityOfShaft/diaryshow.do?diaryid=${ds1.getL_ID()}">${ds1.getL_Title()}</a>
                                             </p>
                                         </div>
                                         
                                         <div class="cla02-02">
                                             <p>
                                                 <label>${ds1.getL_Time()}(11/66)</label>
-                                                <a name="refresh" style="display: none;">refresh</a>
-                                                <a id="b-edit" href="/UniversityOfShaft/diaryshow.do?diaryid=${ds1.getL_ID()}" onclick="writeAgain()">编辑</a>
+                                                <a id="b-edit" href="/UniversityOfShaft/diaryedit.do?diaryid=${ds1.getL_ID()}">编辑</a>
+                                                <a id="b-delete" href="/UniversityOfShaft/diarydelete.do?diaryid=${ds1.getL_ID()}">删除</a>
                                             </p>
                                         </div>
                                         <div style="clear:both"></div><!--这个层很有用，必须要，否则可能不兼容。-->
@@ -112,11 +112,12 @@
                                     <div class="collapsible-body">
                                         <!--<p></p>-->
                                         <div>
-											<form action="/UniversityOfShaft/diaryadd.do" method="post">
+											<form id="formsubmit" method="post">
 											
                                             	<!--日志标题-->
                                             	<div id="write02">
                                                 	<div>
+                                                		<input type="text" name="editdiaryname" value="${diaryId}" style="display: none;">
                                                     	<input type="text" name="mytitle" placeholder="这里填写标题！" value="${deTitle}">
                                                 	</div>
                                             	</div>
@@ -138,7 +139,7 @@
                                                     	<input type="radio" name="radio01" value="1">
                                                     	<label>私密</label>
                                                 	</div>
-                                                	<input type="submit" value="提交"> 
+                                                	<input id="mysubmitid" type="submit" value="提交" onclick="addOrEdit()"> 
                                             	</div>
                                          	</form>
                                         </div>
@@ -154,7 +155,7 @@
                 <div id="div-show" class="col-lg-12">
                     <div class="card">
                         <div id="div-show01" class="card-action">
-                            <a href="/UniversityOfShaft/diarylist.do" onclick="listOrShow()">返回列表</a>
+                            <a href="/UniversityOfShaft/diarylist.do">返回列表</a>
                         </div>
 
                         <div class="card-content">
@@ -226,41 +227,44 @@
     
     /* 显示列表还是日志 */
     function listOrShow() {
-		if("${ow}"=="0"){
-			if("${ref}"=="refresh"){ 
-				document.getElementById("divmyjournal03").click(); 
-			} else {
-			    document.getElementById("div-show").style.display = "none";
-	            document.getElementById("div-list").style.display = "";
-			}
+		if("${ow}"=="0") {
+			document.getElementById("div-show").style.display = "none";
+	        document.getElementById("div-list").style.display = "";
 		}
 		else if("${ow}"=="1") {
 			document.getElementById("div-list").style.display = "none";
-	        document.getElementById("div-show").style.display = "";
+        	document.getElementById("div-show").style.display = "";
+		}
+		else if("${editname}"=="编辑") {
+			document.getElementById("div-show").style.display = "none";
+	        document.getElementById("div-list").style.display = "";
+			document.getElementById("divmyjournal03").click(); //显示编辑界面
+			document.getElementById("mysubmitid").value = "确定";
+			//私密还是公开 被选中
+			var rad = document.getElementsByName("radio01");
+			for(var i=0;i<=rad.length;i++) {
+		        if(rad[i].value=="${deLimits}") {
+		        	rad[i].checked = true;
+		        } 
+		    }
 		}
 		else if("${lflush}"=="1") {
 			window.location.href = "/UniversityOfShaft/diarylist.do";
 		}
 	}
-    
-    /* 编辑日志 */
-    function writeAgain() {
-        /* document.getElementById("divmyjournal03").click(); */
-        var rad = document.getElementsByName("radio01");
-        for(var i=1;i<=rad.length;i++) {
-            if(rad[i].value=="${deLimits}") {
-                rad[i].checked = true;
-            } 
-        }
-    }
 
-<<<<<<< HEAD
     /* 添加或者修改日记 */
     function addOrEdit() {
     	var myform0 = document.getElementById("formsubmit");
     	var mysubid = document.getElementById("mysubmitid");
     	if(mysubid.value=="提交") {
+    		var mytitle = document.getElementsByName("mytitle");
+    		var mycontent = document.getElementsByName("mycontext");
+    		var mylimits = document.getElementsByName("radio01");
     		alert(mysubid.value);
+    		alert(mytitle.value);
+    		alert(mycontent.value);
+    		alert(mylimits.value);
     		myform0.action="/UniversityOfShaft/diaryadd.do";
     		myform0.submit();
     	}
@@ -270,8 +274,6 @@
     		myform0.submit();
     	}
 	}
-=======
->>>>>>> origin/master
 </script>
 
 
