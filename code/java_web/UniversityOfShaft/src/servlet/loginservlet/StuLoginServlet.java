@@ -41,7 +41,7 @@ public class StuLoginServlet extends HttpServlet{
 			req.setAttribute("userno", account);
 			req.setAttribute("username", u.getUS_Name());
 			Cookie cookieNo = new Cookie("cookieNo", account); 
-			cookieNo.setMaxAge(60*1);;
+			cookieNo.setMaxAge(60*30);;
 			res.addCookie(cookieNo);
 			req.getRequestDispatcher("/jsp/navigation.jsp").forward(req, res);
 			return;

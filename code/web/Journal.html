@@ -87,6 +87,7 @@
                                             <p>
                                                 <label>2017-05-04(11/66)</label>
                                                 <a id="b-edit" href="#" onclick="writeAgain()">编辑</a>
+                                                <a href="javascript:void(0);" name="11111" onclick="isDelete(this)">删除</a>
                                             </p>
                                         </div>
                                         <div style="clear:both"></div><!--这个层很有用，必须要，否则可能不兼容。-->
@@ -100,18 +101,18 @@
                                     <div class="collapsible-body">
                                         <!--<p></p>-->
                                         <div>
-                                            <form>
+                                            <form id="formsubmit" method="post" target="nm_iframe">
                                                 <!--日志标题-->
                                                 <div id="write02">
                                                     <div>
-                                                        <input type="text" placeholder="这里填写标题！">
+                                                        <input name="mytitle" type="text" placeholder="这里填写标题！">
                                                     </div>
                                                 </div>
 
                                                 <!--内容-->
                                                 <div id="write03">
                                                     <div>
-                                                        <textarea placeholder="这里写正文！"></textarea>
+                                                        <textarea name="mycontext" placeholder="这里写正文！"></textarea>
                                                     </div>
                                                 </div>
 
@@ -125,7 +126,7 @@
                                                         <input type="radio" name="radio01" value="私密">
                                                         <label>私密</label>
                                                     </div>
-                                                    <input type="submit" value="发表">
+                                                    <input type="submit" value="发表" onclick="mytest()">
                                                 </div>
                                             </form>
                                         </div>
@@ -231,16 +232,34 @@
 
     function writeAgain() {
         document.getElementById("divmyjournal03").click();
-        var rad = document.getElementsByName("radio01");
-        for(var i=1;i<=rad.length;i++) {
-            if(rad[i].value=="私密") {
-                rad[i].checked = true;
-            }
+    }
+
+    function mytest() {
+        var myform0 = document.getElementById("formsubmit");
+        var mytitle = document.getElementsByName("mytitle")[0].value;
+        var mycontent = document.getElementsByName("mycontext")[0].value;
+        //var mylimits = document.getElementsByName("radio01").value;
+        var mylimits = $("input:radio:checked").val();
+        //if(mytitle!="")
+        //alert(mysubid.value);
+        alert(mytitle);
+        alert(mycontent);
+        alert(mylimits);
+        myform0.target = "nm_iframe";
+
+        var del = confirm('确认删除？');if(del==true){href='empty.html';alert('删除成功！');}else{alert('删除失败！');}
+    }
+    function isDelete(e) {
+        var del = confirm('确认删除？');
+        if(del==true) {
+            alert(e.name);
+        } else {
+            alert('删除失败！');
         }
-        //window.location.href = "";
     }
 </script>
 
+<iframe name="nm_iframe" style="display:none;"></iframe>
 
 </body>
 
