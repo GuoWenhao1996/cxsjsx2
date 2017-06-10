@@ -1,15 +1,5 @@
 package entity;
 
-/**
- * 个人信息实体类
- * 
- * @author Lian
- * 
- * @version 1.0
- *
- *          2017年6月7日
- */
-
 public class PersonalDataEntity {
 	private String Stu_SNo;
 	private String Stu_Name;
@@ -118,6 +108,14 @@ public class PersonalDataEntity {
 
 	public void setStu_Assess(String stu_Assess) {
 		Stu_Assess = stu_Assess;
+	}
+
+	@Override
+	public String toString() {
+		return "PersonalDataEntity [Stu_SNo=" + Stu_SNo + ", Stu_Name=" + Stu_Name + ", Stu_ClassName=" + Stu_ClassName
+				+ ", Stu_Sex=" + Stu_Sex + ", Stu_Id=" + Stu_Id + ", Stu_Nation=" + Stu_Nation + ", Stu_Bir=" + Stu_Bir
+				+ ", Stu_Tel=" + Stu_Tel + ", Stu_Home=" + Stu_Home + ", Stu_From=" + Stu_From + ", Stu_Photo="
+				+ Stu_Photo + ", Stu_Assess=" + Stu_Assess + "]";
 	}
 
 }

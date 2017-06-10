@@ -1,5 +1,5 @@
-﻿<%@page pageEncoding="utf-8"%>
-<%@page import="util.DBUtil" %>
+<%@page pageEncoding="utf-8"%>
+<%@page import="util.DBUtil"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>个人资料</title>
+<title>大学轴</title>
 <link rel="shortcut icon" href="${path}assets/img/icon_pd.ico" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -48,10 +48,6 @@
 	};
 	window.onload = function() {
 		setIframeHeight(document.getElementById('mainFrame'));
-		/*if(${username}==null){
-			alert("您尚未登录");
-			window.navigate("login.jsp"); 
-		}   */
 	};
 	function changetitle(tit, e) {
 		document.title = tit;
@@ -68,14 +64,13 @@
 
 <body>
 	<div id="wrapper">
-	
 		<%
 			String name = "as";
 			boolean has = false;
-			String username=request.getParameter("username");
-			if(!username.equals(null)){
-				has=true;
-				name=username;				
+			String username = request.getParameter("username");
+			if (!username.equals(null)) {
+				has = true;
+				name = username;
 			}
 			Cookie Cookies[] = request.getCookies();
 			if (Cookies != null) {
@@ -279,50 +274,31 @@
 				<ul class="nav" id="main-menu">
 
 					<li><a class="active-menu waves-effect waves-dark" name="lead"
-						href="PersonalData.jsp" target="mainFrame"
-						onclick="javascript:changetitle('个人资料',this)"><i
-							class="fa fa-dashboard"></i> 个人资料</a></li>
-					<li><a id="qw" href="ScoreQuery.jsp"
+						href="${path}jsp/thome.html" target="mainFrame"
+						onclick="javascript:changetitle('欢迎页',this)"><i
+							class="fa fa-dashboard"></i>欢迎页</a></li>
+					<li><a href="${path}jsp/thome.html"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
-						onclick="javascript:changetitle('成绩查询',this)"><i
-							class="fa fa-desktop"></i> 成绩查询</a></li>
-					<li><a href="ScoreAnalysis.jsp"
-						class="waves-effect waves-dark" name="lead" target="mainFrame"
+						onclick="javascript:changetitle('学生成绩',this)"><i
+							class="fa fa-desktop"></i>学生成绩</a></li>
+					<li><a href="thome.html" class="waves-effect waves-dark"
+						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('成绩分析',this)"><i
-							class="fa fa-bar-chart-o"></i> 成绩分析</a></li>
-					<li><a href="/UniversityOfShaft/diarylist.do"
+							class="fa fa-bar-chart-o"></i>成绩分析</a></li>
+					<li><a href="tStudentDiary.html"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
-						onclick="javascript:changetitle('日志',this)"><i
-							class="fa fa-qrcode"></i> 日志</a></li>
+						onclick="javascript:changetitle('学生日志',this)"><i
+							class="fa fa-qrcode"></i>学生日志</a></li>
 
-					<li><a href="RewardsAndPunishment.jsp"
-						class="waves-effect waves-dark" name="lead" target="mainFrame"
-						onclick="javascript:changetitle('奖惩',this)"><i
-							class="fa fa-table"></i> 奖惩</a></li>
-					<li><a href="/UniversityOfShaft/listAssess.do" class="waves-effect waves-dark"
+					<li><a href="thome.html" class="waves-effect waves-dark"
+						name="lead" target="mainFrame"
+						onclick="javascript:changetitle('学生奖惩',this)"><i
+							class="fa fa-table"></i>学生奖惩</a></li>
+					<li><a href="/UniversityOfShaft/listAssessTeac.do" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('评价',this)"><i
-							class="fa fa-edit"></i> 评价</a></li>
+							class="fa fa-edit"></i>评价</a></li>
 
-
-					<li><a href="#" class="waves-effect waves-dark"><i
-							class="fa fa-sitemap"></i> 多级下拉菜单<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="#">二级链接</a></li>
-							<li><a href="#">二级链接</a></li>
-							<li><a href="#" class="waves-effect waves-dark">二级链接<span
-									class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li><a href="#">三级链接</a></li>
-									<li><a href="#">三级链接</a></li>
-									<li><a href="#">三级链接</a></li>
-
-								</ul></li>
-						</ul></li>
-					<li><a href="empty.jsp" class="waves-effect waves-dark"
-						name="lead" target="mainFrame"
-						onclick="javascript:changetitle('空白页',this)"><i
-							class="fa fa-fw fa-file"></i> 空白页 </a></li>
 				</ul>
 
 			</div>
@@ -330,8 +306,8 @@
 		</nav>
 		<!-- /. NAV SIDE  -->
 
-		<iframe src="${path}jsp/PersonalData.jsp" id="mainFrame"
-			name="mainFrame" width="100%" frameborder="no"></iframe>
+		<iframe src="${path}jsp/thome.html" id="mainFrame" name="mainFrame"
+			width="100%" frameborder="no"></iframe>
 		<!-- /. PAGE WRAPPER  -->
 	</div>
 	<!-- /. WRAPPER  -->

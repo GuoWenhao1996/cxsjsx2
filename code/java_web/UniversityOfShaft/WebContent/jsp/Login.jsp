@@ -91,7 +91,7 @@ $(function(){
     <!-- 导师登录开始-->
     <div class="hide">
       <div class="tea_error_box"></div>
-      <form action="navigation.jsp" method="post" class="tea_login_error">
+      <form action="/UniversityOfShaft/TeaLogin.do" method="post" class="tea_login_error">
         <div id="username">
           <label>教工号：</label>
           <input type="text" id="tea_username_hide" name="username" placeholder="输入教工号" nullmsg="教工号不能为空！" datatype="s6-18" errormsg="教工号范围在6~18个字符之间！" sucmsg="教工号验证通过！" class="input"/>

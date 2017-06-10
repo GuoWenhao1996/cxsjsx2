@@ -54,94 +54,11 @@
 					<div class="col-lg-12">
 						<div class="card">
 							<div class="card-content">
-								<div class="col">
-									<ul class="tabs">
-										<li class="tab col s3"><a href="#test4">参与评价</a></li>
-										<li class="tab col s3"><a href="#test1">教师寄语</a></li>
-										<li class="tab col s3"><a href="#test2">同学印象</a></li>
-										<li class="tab col s3 "><a href="#test3">自我评价</a></li>
-									</ul>
-								</div>
 								<div class="clearBoth">
 									<br />
 								</div>
 
-								<div id="test1" class="col s12">
-									<div class="card">
-										<div class="card-action">
-											<h4>
-												<b>老师对你的评价</b>
-											</h4>
-										</div>
-										<div class="card-image">
-											<ul class="collection">
-												<c:forEach var="as0" items="${aT}" varStatus="vs">
-													<li class="collection-item avatar"><i
-														class="material-icons circle green">perm_identity</i> <span
-														class="title">${as0.getA_PersonNo()}</span>
-														<p>
-															${as0.getA_DataTime()} <br> <b>${as0.getA_Context()}</b>
-														</p> <i class="material-icons secondary-content">${as0.getA_Relationship()}</i></li>
-												</c:forEach>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div id="test2" class="col s12">
-									<div class="card">
-										<div class="card-action">
-											<h4>
-												<b>同学对你的评价</b>
-											</h4>
-										</div>
-										<div class="card-image">
-											<ul class="collection">
-												<c:forEach var="as0" items="${aS}" varStatus="vs">
-													<li class="collection-item avatar"><i
-														class="material-icons circle green">perm_identity</i> <span
-														class="title">${as0.getA_PersonNo()}</span>
-														<p>
-															${as0.getA_DataTime()} <br> <b>${as0.getA_Context()}</b>
-														</p> <i class="material-icons secondary-content">${as0.getA_Relationship()}</i></li>
-												</c:forEach>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div id="test3" class="col s12">
-									<div class="card">
-										<div class="card-action">
-											<h4>
-												<b>自我评价</b>
-											</h4>
-										</div>
-										<div class="card-content">
-											<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${sA}</p>
-											<div style="margin-top: 20px; margin-left: 10px">
-												<a onclick="hideOrShow()"
-													class="waves-effect waves-light btn"><i
-													class="material-icons left">mode_edit</i>修改</a>
-											</div>
 
-										</div>
-										<div class="card-content" id="alterSelfAss">
-											<form id="selfAssForm" method="post">
-												<!--内容-->
-												<div id="write03">
-													<div>
-														<textarea id="selfAssess" name="selfAssess"
-															placeholder="这里写对自己的评价！"></textarea>
-													</div>
-												</div>
-												<!--提交-->
-												<div style="margin-top: 5px; margin-left: 80%">
-													<input class="waves-effect waves-light btn" type="submit"
-														value="保存" onclick="isNull()">
-												</div>
-											</form>
-										</div>
-									</div>
-								</div>
 								<div id="test4" class="col s12">
 									<div class="card">
 										<div class="card-action">
@@ -237,44 +154,19 @@
 	<script src="${path}assets/js/custom-scripts.js"></script>
 
 	<script>
-		/* 是否显示自我评价的编辑框 */
-		function hideOrShow() {
-			if (document.getElementById("alterSelfAss").style.display == "")
-				document.getElementById("alterSelfAss").style.display = "none";
-			else
-				document.getElementById("alterSelfAss").style.display = "";
-		}
-
 		/* 显示教师表格 */
 		function hideOrShowTableTeac(row) {
 			var obj = document.getElementById("dataTables-TeacherEvaluate");
 			var stuNo = obj.rows[row.name].cells[0].innerHTML;
-			window.location.href = "/UniversityOfShaft/listAssessT2S.do?SNo="
+			window.location.href = "/UniversityOfShaft/listAssessT2STeac.do?SNo="
 					+ stuNo;
 		}
 		/* 显示学生表格 */
 		function hideOrShowTableStu(row) {
 			var obj = document.getElementById("dataTables-TeacherEvaluate");
 			var stuNo = obj.rows[row.name].cells[0].innerHTML;
-			window.location.href = "/UniversityOfShaft/listAssessS2S.do?SNo="
+			window.location.href = "/UniversityOfShaft/listAssessS2STeac.do?SNo="
 					+ stuNo;
-		}
-
-		/* 判断是否为空 */
-		function isNull() {
-			if (document.getElementById("selfAssess").value.trim().length == 0) {
-				var flag = confirm("当前自我评价为空，是否保存？");
-				if (flag) {
-					document.getElementById('selfAssForm').action = "/UniversityOfShaft/UpdateSelfAssess.do#test3";
-					alert("自我评价修改为空！");
-				} else {
-					document.getElementById('selfAssForm').action = "/UniversityOfShaft/listAssess.do#test3";
-					alert("未提交");
-				}
-			} else {
-				alert("自我评价修改成功！");
-				document.getElementById('selfAssForm').action = "/UniversityOfShaft/UpdateSelfAssess.do#test3";
-			}
 		}
 
 		/* 添加评价信息  */
@@ -287,13 +179,14 @@
 				while (assess.trim().length == 0) {
 					assess = prompt("检测到输入的评价为空，请重新输入~", "");
 				}
-				var relationship = prompt("请输入您和【" + stuName + "】的关系:", "同学");
+				var relationship = prompt("请输入您是【" + stuName + "】哪一门课的老师？:",
+						"例如：多媒体技术");
 				if (relationship != null) {
 					while (relationship.trim().length == 0) {
 						relationship = prompt("检测到您输入的关系为空，请重新输入~", "");
 					}
 					alert("您对【" + stuName + "】的评价提交成功！");
-					window.location.href = "/UniversityOfShaft/AddStuAssess.do?SNo="
+					window.location.href = "/UniversityOfShaft/AddTeacAssess.do?SNo="
 							+ encodeURI(encodeURI(stuNo))
 							+ "&&ass="
 							+ encodeURI(encodeURI(assess))

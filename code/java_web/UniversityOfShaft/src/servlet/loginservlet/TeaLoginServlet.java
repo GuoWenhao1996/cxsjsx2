@@ -1,4 +1,4 @@
-﻿package servlet.loginservlet;
+package servlet.loginservlet;
 
 import java.io.IOException;
 
@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.StuloginDao;
-import entity.StuloginEntity;
+import dao.TealoginDao;
+import entity.TealoginEntity;
 import util.ThisSystemException;
 import util.ThisSystemUtil;
 
-@WebServlet("/StuLogin.do")
-public class StuLoginServlet extends HttpServlet{
+@WebServlet("/TeaLogin.do")
+public class TeaLoginServlet extends HttpServlet{
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -29,20 +29,20 @@ public class StuLoginServlet extends HttpServlet{
 			if(ThisSystemUtil.isNone(password)){
 				throw new ThisSystemException("密码不能为空");	
 			}
-			StuloginDao dao=new StuloginDao();
-			StuloginEntity u=dao.selectBySno(account);
+			TealoginDao dao=new TealoginDao();
+			TealoginEntity u=dao.selectBySno(account);
 			if(u==null){
 				throw new ThisSystemException("不存在此账号");
 			}
-			if(!u.getUS_Password().equals(password)){
+			if(!u.getUT_Password().equals(password)){
 				throw new ThisSystemException("密码错误");
 			}			
 			req.setAttribute("userno", account);
-			req.setAttribute("username", u.getUS_Name());
+			req.setAttribute("username", u.getUT_NickName());
 			Cookie cookieNo = new Cookie("cookieNo", account); 
 			cookieNo.setMaxAge(60*60);
 			res.addCookie(cookieNo);
-			req.getRequestDispatcher("/jsp/navigation.jsp").forward(req, res);
+			req.getRequestDispatcher("/jsp/tnavigation.jsp").forward(req, res);
 			return;
 		}catch(ThisSystemException e){
 			req.setAttribute("message", e.getMessage());
@@ -52,4 +52,5 @@ public class StuLoginServlet extends HttpServlet{
 		}
 		req.getRequestDispatcher("/jsp/Login.jsp").forward(req, res);
 	}
+
 }

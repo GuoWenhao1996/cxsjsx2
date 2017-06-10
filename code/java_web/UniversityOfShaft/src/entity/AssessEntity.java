@@ -5,8 +5,10 @@ package entity;
  * 
  * 评价实体类，目前将两张表先合为一个实体看看效果。
  * 
+ * 添加关系属性
+ * 
  * @author guowenhao
- * @version 1.0
+ * @version 2.0
  */
 public class AssessEntity {
 	private String A_Id; // 评价编号
@@ -14,6 +16,7 @@ public class AssessEntity {
 	private String A_PersonNo; // 评价者ID
 	private String A_DataTime; // 评价时间
 	private String A_Context; // 评价内容
+	private String A_Relationship; // 评价内容
 
 	public String getA_Id() {
 		return A_Id;
@@ -55,8 +58,16 @@ public class AssessEntity {
 		A_PersonNo = a_PersonNo;
 	}
 
+	public String getA_Relationship() {
+		return A_Relationship;
+	}
+
+	public void setA_Relationship(String a_Relationship) {
+		A_Relationship = a_Relationship;
+	}
+
 	public String toString() {
 		return " A_Id:" + A_Id + " Stu_SNo:" + Stu_SNo + " A_PersonNo:" + A_PersonNo + " A_DataTime:" + A_DataTime
-				+ " A_Context:" + A_Context;
+				+ " A_Context:" + A_Context + " A_Relationship:" + A_Relationship;
 	}
 }

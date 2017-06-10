@@ -16,7 +16,7 @@ import util.DBUtil;
  * 评价dao层，完成数据库交互任务
  * 
  * @author guowenhao
- * @version 2.0
+ * @version 3.0
  */
 public class AssessDao {
 
@@ -34,8 +34,9 @@ public class AssessDao {
 
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
-		sql.append(" insert into t_tassess ").append(" (TeaAss_ID,Stu_SNo,UT_No,TeaAss_Time,TeaAss_Context) ")
-				.append(" values ").append(" (?,?,?,?,?) ");
+		sql.append(" insert into t_tassess ")
+				.append(" (TeaAss_ID,Stu_SNo,UT_No,TeaAss_Time,TeaAss_Context,TeaAss_relationship) ").append(" values ")
+				.append(" (?,?,?,?,?,?) ");
 		// 为sql传入参数
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.setString(1, ae.getA_Id());
@@ -43,6 +44,7 @@ public class AssessDao {
 		ps.setString(3, ae.getA_PersonNo());
 		ps.setString(4, ae.getA_DataTime());
 		ps.setString(5, ae.getA_Context());
+		ps.setString(6, ae.getA_Relationship());
 		// 执行sql
 		ps.executeUpdate();
 	}
@@ -62,8 +64,8 @@ public class AssessDao {
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into t_stuassess ")
-				.append(" (StuAss_Id,Stu_SNo,StuAss_SNo,StuAss_DataTime,StuAss_Context) ").append(" values ")
-				.append(" (?,?,?,?,?) ");
+				.append(" (StuAss_Id,Stu_SNo,StuAss_SNo,StuAss_DataTime,StuAss_Context,StuAss_relationship) ")
+				.append(" values ").append(" (?,?,?,?,?,?) ");
 		// 为sql传入参数
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.setString(1, ae.getA_Id());
@@ -71,6 +73,7 @@ public class AssessDao {
 		ps.setString(3, ae.getA_PersonNo());
 		ps.setString(4, ae.getA_DataTime());
 		ps.setString(5, ae.getA_Context());
+		ps.setString(6, ae.getA_Relationship());
 		// 执行sql
 		ps.executeUpdate();
 	}
@@ -159,13 +162,52 @@ public class AssessDao {
 	 * @throws Exception
 	 *             运行错误
 	 */
-	public String[][] selectAllStuAss() throws Exception {
+	public String[][] selectAllStuAss(String sno) throws Exception {
 		// 获取数据库连接
 		Connection connection = DBUtil.getConnection();
 
 		// 构建sql语句
 		StringBuilder sql1 = new StringBuilder();
-		sql1.append(" select Stu_SNo, Stu_Name,  Stu_ClassName from t_stuinfo order by Stu_SNo ");
+		sql1.append(" select Stu_SNo, Stu_Name,  Stu_ClassName from t_stuinfo where Stu_SNo != " + sno
+				+ " order by Stu_SNo ");
+		StringBuilder sql2 = new StringBuilder();
+		sql2.append(" select Count(Stu_SNo)-1 from t_stuinfo ");
+
+		// 构建游标2并执行,构建学生数组
+		PreparedStatement ps2 = connection.prepareStatement(sql2.toString());
+		ResultSet rs2 = ps2.executeQuery();
+		rs2.next();
+		String[][] stu = new String[rs2.getInt(1)][3];
+
+		// 构建游标1并执行，为学生数组赋值
+		PreparedStatement ps = connection.prepareStatement(sql1.toString());
+		ResultSet rs = ps.executeQuery();
+
+		// 循环调用rowsEntity()将游标数据转化为实体，并加到链表中
+		int index = 0;
+		while (rs.next()) {
+			stu[index][0] = rs.getString(1);
+			stu[index][1] = rs.getString(2);
+			stu[index][2] = rs.getString(3);
+			index++;
+		}
+		return stu;
+	}
+	/**
+	 * 为教师评价页面专门设计的学生数组
+	 * 
+	 * @return 基于评价的学生数组stu[序号][学号/姓名/班级]
+	 * @throws Exception
+	 *             运行错误
+	 */
+	public String[][] selectAllStuAssTeac(String sno) throws Exception {
+		// 获取数据库连接
+		Connection connection = DBUtil.getConnection();
+
+		// 构建sql语句
+		StringBuilder sql1 = new StringBuilder();
+		sql1.append(" select Stu_SNo, Stu_Name,  Stu_ClassName from t_stuinfo where Stu_SNo != " + sno
+				+ " order by Stu_SNo ");
 		StringBuilder sql2 = new StringBuilder();
 		sql2.append(" select Count(Stu_SNo) from t_stuinfo ");
 
@@ -189,6 +231,89 @@ public class AssessDao {
 		}
 		return stu;
 	}
+	/**
+	 * 教师对学生的评价数组
+	 * 
+	 * @return 评价数组stu[序号][时间/评价/姓名/关系]
+	 * @throws Exception
+	 *             运行错误
+	 */
+	public String[][] selectAllAssT2S(String sno) throws Exception {
+		// 获取数据库连接
+		Connection connection = DBUtil.getConnection();
+
+		// 构建sql语句
+		StringBuilder sql1 = new StringBuilder();
+		sql1.append(
+				" select  TeaAss_Time, TeaAss_Context,UT_Name, TeaAss_relationship from t_tassess ta, t_teaclogin tl where Stu_SNo=? and ta.UT_No=tl.UT_No order by TeaAss_Time desc ");
+		StringBuilder sql2 = new StringBuilder();
+		sql2.append(" select Count(TeaAss_ID) from t_tassess where Stu_SNo=? ");
+
+		// 构建游标2并执行,构建学生数组
+		PreparedStatement ps2 = connection.prepareStatement(sql2.toString());
+		ps2.setString(1, sno);
+		ResultSet rs2 = ps2.executeQuery();
+		rs2.next();
+		String[][] stu = new String[rs2.getInt(1)][4];
+
+		// 构建游标1并执行，为学生数组赋值
+		PreparedStatement ps = connection.prepareStatement(sql1.toString());
+		ps.setString(1, sno);
+		ResultSet rs = ps.executeQuery();
+
+		// 循环调用rowsEntity()将游标数据转化为实体，并加到链表中
+		int index = 0;
+		while (rs.next()) {
+			stu[index][0] = rs.getString(1).substring(0, 19);
+			stu[index][1] = rs.getString(2);
+			stu[index][2] = rs.getString(3);
+			stu[index][3] = rs.getString(4);
+			index++;
+		}
+		return stu;
+	}
+
+	/**
+	 * 学生对学生的评价数组
+	 * 
+	 * @return 评价数组stu[序号][时间/评价/姓名/关系]
+	 * @throws Exception
+	 *             运行错误
+	 */
+	public String[][] selectAllAssS2S(String sno) throws Exception {
+		// 获取数据库连接
+		Connection connection = DBUtil.getConnection();
+
+		// 构建sql语句
+		StringBuilder sql1 = new StringBuilder();
+		sql1.append(
+				" select  StuAss_DataTime, StuAss_Context, Stu_Name, StuAss_relationship from t_stuassess ta, t_stuinfo tl where ta.Stu_SNo=? and ta.StuAss_SNo=tl.Stu_SNo order by StuAss_DataTime desc ");
+		StringBuilder sql2 = new StringBuilder();
+		sql2.append(" select Count(StuAss_Id) from t_stuassess where Stu_SNo=? ");
+
+		// 构建游标2并执行,构建学生数组
+		PreparedStatement ps2 = connection.prepareStatement(sql2.toString());
+		ps2.setString(1, sno);
+		ResultSet rs2 = ps2.executeQuery();
+		rs2.next();
+		String[][] stu = new String[rs2.getInt(1)][4];
+
+		// 构建游标1并执行，为学生数组赋值
+		PreparedStatement ps = connection.prepareStatement(sql1.toString());
+		ps.setString(1, sno);
+		ResultSet rs = ps.executeQuery();
+
+		// 循环调用rowsEntity()将游标数据转化为实体，并加到链表中
+		int index = 0;
+		while (rs.next()) {
+			stu[index][0] = rs.getString(1).substring(0, 19);
+			stu[index][1] = rs.getString(2);
+			stu[index][2] = rs.getString(3);
+			stu[index][3] = rs.getString(4);
+			index++;
+		}
+		return stu;
+	}
 
 	/**
 	 * 通过学号查找到教师评价链表
@@ -207,7 +332,7 @@ public class AssessDao {
 
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select TeaAss_ID, Stu_SNo, UT_Name,  TeaAss_Time, TeaAss_Context ")
+		sql.append(" select TeaAss_ID, Stu_SNo, UT_Name,  TeaAss_Time, TeaAss_Context, TeaAss_relationship ")
 				.append(" from t_tassess ta, t_teaclogin tl ").append(" where Stu_SNo=? and ta.UT_No=tl.UT_No ")
 				.append(" order by TeaAss_Time desc");
 		// 为sql传入参数
@@ -239,7 +364,7 @@ public class AssessDao {
 
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select StuAss_Id, tsa.Stu_SNo, Stu_Name, StuAss_DataTime, StuAss_Context ")
+		sql.append(" select StuAss_Id, tsa.Stu_SNo, Stu_Name, StuAss_DataTime, StuAss_Context, StuAss_relationship ")
 				.append(" from t_stuassess tsa, t_stuinfo tsi ")
 				.append(" where tsa.Stu_SNo=? and tsa.StuAss_SNo=tsi.Stu_SNo ")
 				.append(" order by StuAss_DataTime desc");
@@ -271,8 +396,9 @@ public class AssessDao {
 		ae.setA_Id(rs.getString(1));
 		ae.setStu_SNo(rs.getString(2));
 		ae.setA_PersonNo(rs.getString(3));
-		ae.setA_DataTime(rs.getString(4));
+		ae.setA_DataTime(rs.getString(4).substring(0, 19));
 		ae.setA_Context(rs.getString(5));
+		ae.setA_Relationship(rs.getString(6));
 		return ae;
 	}
 

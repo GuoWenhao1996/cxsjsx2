@@ -38,6 +38,8 @@ public class AssessTest {
 
 		// dao层初始化测试
 		AssessDao ad = new AssessDao();
+		ad.selectAllAssT2S("631406010109");
+		ad.selectAllAssS2S("631406010109");
 		// String[][] stuass= ad.selectAllStuAss();
 		// for (int i = 0; i < stuass.length; i++) {
 		// System.out.print(stuass[i][0]);
