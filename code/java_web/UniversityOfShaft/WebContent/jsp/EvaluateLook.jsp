@@ -37,6 +37,34 @@
 	href="${path}assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 <body onload="hideOrShow()">
+		<%
+			try {
+				String name = "as";
+				boolean has = false;
+				String username = request.getParameter("username");
+				if (!username.equals(null)) {
+					has = true;
+					name = username;
+				}
+				Cookie Cookies[] = request.getCookies();
+				if (Cookies != null) {
+					for (int n = 0; n < Cookies.length; n++) {
+						Cookie newCookie = Cookies[n];
+						if (newCookie.getName().equals("cookieNo")) {
+							has = true;
+							name = newCookie.getValue();
+							name = java.net.URLDecoder.decode(name, "UTF-8");
+						}
+					}
+				}
+				System.out.println(has);
+				if (!has) {
+					response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
+				}
+			} catch (Exception e) {
+				response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
+			}
+		%>
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="header">
@@ -83,9 +111,9 @@
 													<tbody>
 														<c:forEach var="as0" items="${sAA}" varStatus="vs">
 															<tr class="odd gradeX">
-																<td width="15%">${sAA[vs.index][0]}</td>
-																<td width="40%">${sAA[vs.index][1]}</td>
-																<td width="10%">${sAA[vs.index][2]}</td>
+																<td width="20%">${sAA[vs.index][0]}</td>
+																<td width="50%">${sAA[vs.index][1]}</td>
+																<td width="15%">${sAA[vs.index][2]}</td>
 																<td width="15%">${sAA[vs.index][3]}</td>
 															</tr>
 														</c:forEach>

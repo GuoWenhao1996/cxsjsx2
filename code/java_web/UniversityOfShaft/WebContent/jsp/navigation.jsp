@@ -1,5 +1,5 @@
 ﻿<%@page pageEncoding="utf-8"%>
-<%@page import="util.DBUtil" %>
+<%@page import="util.DBUtil"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -68,28 +68,31 @@
 
 <body>
 	<div id="wrapper">
-	
 		<%
-			String name = "as";
-			boolean has = false;
-			String username=request.getParameter("username");
-			if(!username.equals(null)){
-				has=true;
-				name=username;				
-			}
-			Cookie Cookies[] = request.getCookies();
-			if (Cookies != null) {
-				for (int n = 0; n < Cookies.length; n++) {
-					Cookie newCookie = Cookies[n];
-					if (newCookie.getName().equals("cookieNo")) {
-						has = true;
-						name = newCookie.getValue();
-						name = java.net.URLDecoder.decode(name, "UTF-8");
+			try {
+				String name = "as";
+				boolean has = false;
+				String username = request.getParameter("username");
+				if (!username.equals(null)) {
+					has = true;
+					name = username;
+				}
+				Cookie Cookies[] = request.getCookies();
+				if (Cookies != null) {
+					for (int n = 0; n < Cookies.length; n++) {
+						Cookie newCookie = Cookies[n];
+						if (newCookie.getName().equals("cookieNo")) {
+							has = true;
+							name = newCookie.getValue();
+							name = java.net.URLDecoder.decode(name, "UTF-8");
+						}
 					}
 				}
-			}
-			System.out.println(has);
-			if (!has) {
+				System.out.println(has);
+				if (!has) {
+					response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
+				}
+			} catch (Exception e) {
 				response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
 			}
 		%>
@@ -129,8 +132,8 @@
 		<ul id="dropdown1" class="dropdown-content">
 			<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人资料 </a></li>
 			<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置 </a></li>
-			<li><a href="${path}jsp/Login.jsp"><i class="fa fa-sign-out fa-fw"></i>
-					注销 </a></li>
+			<li><a href="${path}jsp/Login.jsp"><i
+					class="fa fa-sign-out fa-fw"></i> 注销 </a></li>
 		</ul>
 		<ul id="dropdown2" class="dropdown-content w250">
 			<li><a href="#">
@@ -299,8 +302,8 @@
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('奖惩',this)"><i
 							class="fa fa-table"></i> 奖惩</a></li>
-					<li><a href="/UniversityOfShaft/listAssess.do" class="waves-effect waves-dark"
-						name="lead" target="mainFrame"
+					<li><a href="/UniversityOfShaft/listAssess.do"
+						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('评价',this)"><i
 							class="fa fa-edit"></i> 评价</a></li>
 
