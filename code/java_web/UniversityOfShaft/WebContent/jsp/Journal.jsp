@@ -37,8 +37,8 @@
                 日志
             </h1>
             <ol class="breadcrumb">
-                <li><a href="PersonalData.html">主页</a></li>
-                <li><a href="Journal.html">日志</a></li>
+                <li><a href="${path}jsp/PersonalData.jsp">主页</a></li>
+                <li><a class="active">日志</a></li>
                 <!--<li class="active">数据</li>-->
             </ol>
 
@@ -73,7 +73,7 @@
                                             <p>
                                                 <label>${ds0.getL_Time()}(11/66)</label>
                                                 <a id="a-edit" href="/UniversityOfShaft/diaryedit.do?diaryid=${ds0.getL_ID()}">编辑</a>
-                                                <a id="a-delete" href="/UniversityOfShaft/diarydelete.do?diaryid=${ds0.getL_ID()}">删除</a>
+                                                <a id="a-delete" name="${ds0.getL_ID()}" href="javascript:void(0)" onclick="isDelete(this)">删除</a>
                                             </p>
                                         </div>
                                         <div style="clear:both"></div><!--这个层很有用，必须要，否则可能不兼容。-->
@@ -86,7 +86,7 @@
                                         私密日志
                                     </div>
                                     <div id="divmyjournal02-01" class="collapsible-body">
-                                        <c:forEach var="ds1" items="${list1}" varStatus="vs" >
+                                        <c:forEach var="ds1" items="${list1}" varStatus="vs">
                                         <div class="cla02-01">
                                             <p>
                                                 <a href="/UniversityOfShaft/diaryshow.do?diaryid=${ds1.getL_ID()}">${ds1.getL_Title()}</a>
@@ -97,7 +97,7 @@
                                             <p>
                                                 <label>${ds1.getL_Time()}(11/66)</label>
                                                 <a id="b-edit" href="/UniversityOfShaft/diaryedit.do?diaryid=${ds1.getL_ID()}">编辑</a>
-                                                <a id="b-delete" href="/UniversityOfShaft/diarydelete.do?diaryid=${ds1.getL_ID()}">删除</a>
+                                                <a id="b-delete" name="${ds1.getL_ID()}" href="javascript:void(0);" onclick="isDelete(this)">删除</a>
                                             </p>
                                         </div>
                                         <div style="clear:both"></div><!--这个层很有用，必须要，否则可能不兼容。-->
@@ -139,7 +139,7 @@
                                                     	<input type="radio" name="radio01" value="1">
                                                     	<label>私密</label>
                                                 	</div>
-                                                	<input id="mysubmitid" type="submit" value="提交" onclick="addOrEdit()"> 
+                                                	<input id="mysubmitid" type="submit" value="提交" onclick="addOrEdit()">
                                             	</div>
                                          	</form>
                                         </div>
@@ -227,15 +227,18 @@
     
     /* 显示列表还是日志 */
     function listOrShow() {
-		if("${ow}"=="0") {
+		if("${ow}"=="0") { //日记列表界面显示
 			document.getElementById("div-show").style.display = "none";
 	        document.getElementById("div-list").style.display = "";
+	        if("${message}"!="") {
+	        	alert("${message}");
+			}
 		}
-		else if("${ow}"=="1") {
+		else if("${ow}"=="1") { //某篇日记界面显示
 			document.getElementById("div-list").style.display = "none";
         	document.getElementById("div-show").style.display = "";
 		}
-		else if("${editname}"=="编辑") {
+		else if("${editname}"=="编辑") { //需要编辑日记
 			document.getElementById("div-show").style.display = "none";
 	        document.getElementById("div-list").style.display = "";
 			document.getElementById("divmyjournal03").click(); //显示编辑界面
@@ -248,34 +251,93 @@
 		        } 
 		    }
 		}
-		else if("${lflush}"=="1") {
+		else if("${lflush}"=="1") { //刚写了日记，需要刷新
+			if("${sucmessage}"=="1") {
+	        	alert("${message}");
+			} else if("${sucmessage}"=="0") {
+				alert("${message}");
+			}
+			window.location.href = "/UniversityOfShaft/diarylist.do";
+		}
+		else if("${update}"=="1") { //刚写了日记，需要刷新
+			if("${sucmessage}"=="1") {
+	        	alert("${message}");
+			} else if("${sucmessage}"=="0") {
+				alert("${message}");
+			}
+			window.location.href = "/UniversityOfShaft/diarylist.do";
+		}
+		else if("${mydel}"=="1") { //执行了删除
+			if("${sucmessage}"=="1") {
+	        	alert("${message}");
+			} else if("${sucmessage}"=="0") {
+				alert("${message}");
+			}
 			window.location.href = "/UniversityOfShaft/diarylist.do";
 		}
 	}
-
+    
     /* 添加或者修改日记 */
     function addOrEdit() {
     	var myform0 = document.getElementById("formsubmit");
     	var mysubid = document.getElementById("mysubmitid");
     	if(mysubid.value=="提交") {
-    		var mytitle = document.getElementsByName("mytitle");
-    		var mycontent = document.getElementsByName("mycontext");
-    		var mylimits = document.getElementsByName("radio01");
-    		alert(mysubid.value);
-    		alert(mytitle.value);
-    		alert(mycontent.value);
-    		alert(mylimits.value);
-    		myform0.action="/UniversityOfShaft/diaryadd.do";
-    		myform0.submit();
+            if(diaryIsNone()==true) {
+            	myform0.target = "nm_iframe";
+            } else {
+            	var sub = confirm("确认提交？");
+            	if(sub) {
+    				myform0.target = "";
+        			myform0.action="/UniversityOfShaft/diaryadd.do";
+        			myform0.submit();
+            	}
+    		}
     	}
     	else if(mysubid.value=="确定") {
-    		alert(mysubid.value);
-    		myform0.action="/UniversityOfShaft/diaryupdate.do";
-    		myform0.submit();
+    		if(diaryIsNone()==true) {
+            	myform0.target = "nm_iframe";
+            } else {
+            	var upd = confirm("确认修改？");
+            	if(upd) {
+            		myform0.target = "";
+    				myform0.action="/UniversityOfShaft/diaryupdate.do";
+    				myform0.submit();
+    			}
+            }
     	}
+	}
+    
+    /* 判断日志是否存在空 */
+    function diaryIsNone() {
+    	mytitle = document.getElementsByName("mytitle")[0].value;
+        mycontent = document.getElementsByName("mycontext")[0].value;
+        mylimits = $("input:radio:checked").val();
+		if(mytitle==""||mycontent==""||(mylimits!="0"&&mylimits!="1")) {
+        	if(mytitle=="") {
+        		alert("题目不能为空！");
+        	}
+        	else if(mycontent=="") {
+        		alert("内容不能为空！");
+        	}
+        	else if(mylimits!="0"&&mylimits!="1") {
+        		alert("请选择保存类型！公开or私密");
+        	}
+        	return true;
+		} else {
+			return false;
+		}
+	}
+    
+    /* 提示是否删除 */
+    function isDelete(e) {
+    	var del = confirm("确认删除？");
+		if(del) {
+			window.location.href = "/UniversityOfShaft/diarydelete.do?diaryid="+e.name;
+		}
 	}
 </script>
 
+<iframe name="nm_iframe" style="display:none;"></iframe>
 
 </body>
 

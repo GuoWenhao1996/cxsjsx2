@@ -904,7 +904,7 @@ ul.dropdown-menu.dropdown-messages li a div {
     line-height: 5%;
 }
 
-#a-edit {
+#a-edit,a-delete {
     margin: auto 1%;
 }
 
@@ -924,7 +924,7 @@ ul.dropdown-menu.dropdown-messages li a div {
     line-height: 5%;
 }
 
-#b-edit {
+#b-edit,b-delete {
     margin: auto 1%;
 }
 

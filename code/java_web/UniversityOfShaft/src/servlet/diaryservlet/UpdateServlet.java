@@ -39,12 +39,18 @@ public class UpdateServlet extends HttpServlet {
 			de.setL_Detail(strContext);
 			de.setL_Limits(strLimits);
 			ddao.updateDiary(de);
+			req.setAttribute("update", "1"); //表示更新了
+			req.setAttribute("sucmessage", "1"); //表示添加成功
+			req.setAttribute("message", "更新成功！");
 			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (ThisSystemException e){
-			req.setAttribute("message", e.getMessage());
+			req.setAttribute("sucmessage", "0"); //表示未成功
+			req.setAttribute("message", "更新失败！");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (Exception e){
-			e.printStackTrace();
+			req.setAttribute("sucmessage", "0"); //表示未成功
 			req.setAttribute("message", "系统繁忙，请稍候再试!");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		}
 	}
 }

@@ -33,6 +33,7 @@ public class ShowServlet extends HttpServlet {
 			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		}
 	}
 }

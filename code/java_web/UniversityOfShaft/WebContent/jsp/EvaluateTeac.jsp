@@ -37,34 +37,6 @@
 	href="${path}assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 <body onload="hideOrShow()">
-		<%
-			try {
-				String name = "as";
-				boolean has = false;
-				String username = request.getParameter("username");
-				if (!username.equals(null)) {
-					has = true;
-					name = username;
-				}
-				Cookie Cookies[] = request.getCookies();
-				if (Cookies != null) {
-					for (int n = 0; n < Cookies.length; n++) {
-						Cookie newCookie = Cookies[n];
-						if (newCookie.getName().equals("cookieNo")) {
-							has = true;
-							name = newCookie.getValue();
-							name = java.net.URLDecoder.decode(name, "UTF-8");
-						}
-					}
-				}
-				System.out.println(has);
-				if (!has) {
-					response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
-				}
-			} catch (Exception e) {
-				response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
-			}
-		%>
 	<div id="wrapper">
 		<div id="page-wrapper">
 			<div class="header">
@@ -215,11 +187,11 @@
 					}
 					alert("您对【" + stuName + "】的评价提交成功！");
 					window.location.href = "/UniversityOfShaft/AddTeacAssess.do?SNo="
-							+ encodeURI(encodeURI(stuNo))
+							+ stuNo
 							+ "&&ass="
-							+ encodeURI(encodeURI(assess))
+							+ assess
 							+ "&&rel="
-							+ encodeURI(encodeURI(relationship));
+							+ relationship;
 				} else {
 				}
 			} else {

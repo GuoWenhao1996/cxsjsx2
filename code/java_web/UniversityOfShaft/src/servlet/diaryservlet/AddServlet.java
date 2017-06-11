@@ -38,13 +38,17 @@ public class AddServlet extends HttpServlet {
 			de.setL_Limits(strLimits);
 			ddao.insert(de);
 			req.setAttribute("lflush", "1"); //用于标记用户写了新的日记，需要刷新列表
+			req.setAttribute("sucmessage", "1"); //表示添加成功
+			req.setAttribute("message", "添加成功！");
 			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (ThisSystemException e){
-			req.setAttribute("message", e.getMessage());
+			req.setAttribute("sucmessage", "0"); //表示未成功
+			req.setAttribute("message", "添加失败！");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (Exception e){
-			e.printStackTrace();
+			req.setAttribute("sucmessage", "0"); //表示未成功
 			req.setAttribute("message", "系统繁忙，请稍候再试!");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		}
-		//req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 	}
 }

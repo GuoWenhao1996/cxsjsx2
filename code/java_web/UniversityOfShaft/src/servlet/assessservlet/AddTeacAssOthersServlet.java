@@ -33,9 +33,9 @@ public class AddTeacAssOthersServlet extends HttpServlet {
 			AssessDao assDao = new AssessDao();
 			String tno = DBUtil.getCookieno(req);
 
-			String stuNo = java.net.URLDecoder.decode(req.getParameter("SNo"), "UTF-8");
-			String assess = java.net.URLDecoder.decode(req.getParameter("ass"), "UTF-8");
-			String relationship = java.net.URLDecoder.decode(req.getParameter("rel"), "UTF-8");
+			String stuNo = req.getParameter("SNo");
+			String assess =req.getParameter("ass");
+			String relationship = req.getParameter("rel");
 
 			// 插入老师对学生的评价
 			AssessEntity ae = new AssessEntity();

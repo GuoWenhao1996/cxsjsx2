@@ -280,28 +280,28 @@
 					<li><a class="active-menu waves-effect waves-dark" name="lead"
 						href="${path}jsp/thome.html" target="mainFrame"
 						onclick="javascript:changetitle('欢迎页',this)"><i
-							class="fa fa-dashboard"></i>欢迎页</a></li>
+							class="fa fa-dashboard"></i> 欢迎页</a></li>
 					<li><a href="${path}jsp/thome.html"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生成绩',this)"><i
-							class="fa fa-desktop"></i>学生成绩</a></li>
+							class="fa fa-desktop"></i> 学生成绩</a></li>
 					<li><a href="thome.html" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('成绩分析',this)"><i
-							class="fa fa-bar-chart-o"></i>成绩分析</a></li>
-					<li><a href="tStudentDiary.html"
+							class="fa fa-bar-chart-o"></i> 成绩分析</a></li>
+					<li><a href="/UniversityOfShaft/tlistclass.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生日志',this)"><i
-							class="fa fa-qrcode"></i>学生日志</a></li>
+							class="fa fa-qrcode"></i> 学生日志</a></li>
 
 					<li><a href="thome.html" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生奖惩',this)"><i
-							class="fa fa-table"></i>学生奖惩</a></li>
+							class="fa fa-table"></i> 学生奖惩</a></li>
 					<li><a href="/UniversityOfShaft/listAssessTeac.do" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('评价',this)"><i
-							class="fa fa-edit"></i>评价</a></li>
+							class="fa fa-edit"></i> 评价系统</a></li>
 
 				</ul>
 

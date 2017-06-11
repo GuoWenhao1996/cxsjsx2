@@ -1,5 +1,4 @@
-﻿<%@page pageEncoding="utf-8"%>
-<%@page import="util.DBUtil"%>
+<%@page pageEncoding="utf-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -12,7 +11,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>个人资料</title>
+<title>大学轴</title>
 <link rel="shortcut icon" href="${path}assets/img/icon_pd.ico" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
@@ -48,10 +47,6 @@
 	};
 	window.onload = function() {
 		setIframeHeight(document.getElementById('mainFrame'));
-		/*if(${username}==null){
-			alert("您尚未登录");
-			window.navigate("login.jsp"); 
-		}   */
 	};
 	function changetitle(tit, e) {
 		document.title = tit;
@@ -104,7 +99,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand waves-effect waves-dark" href="#"><i
+				<a class="navbar-brand waves-effect waves-dark"
+					href="${path}jsp/teacher/thome.jsp"><i
 					class="large material-icons">trending_up</i> <strong>大学轴</strong></a>
 
 				<div id="sideNav" href="">
@@ -124,7 +120,7 @@
 						class="fa fa-bell fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
 				<li><a class="dropdown-button waves-effect waves-dark"
 					href="#!" data-activates="dropdown1"><i
-						class="fa fa-user fa-fw"></i> <b>${username}</b> <i
+						class="fa fa-user fa-fw"></i> <b>John Doe</b> <i
 						class="material-icons right">arrow_drop_down</i></a></li>
 			</ul>
 		</nav>
@@ -132,8 +128,8 @@
 		<ul id="dropdown1" class="dropdown-content">
 			<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人资料 </a></li>
 			<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置 </a></li>
-			<li><a href="${path}jsp/Login.jsp"><i
-					class="fa fa-sign-out fa-fw"></i> 注销 </a></li>
+			<li><a href="Login.html"><i class="fa fa-sign-out fa-fw"></i>
+					注销 </a></li>
 		</ul>
 		<ul id="dropdown2" class="dropdown-content w250">
 			<li><a href="#">
@@ -282,30 +278,31 @@
 				<ul class="nav" id="main-menu">
 
 					<li><a class="active-menu waves-effect waves-dark" name="lead"
-						href="PersonalData.jsp" target="mainFrame"
-						onclick="javascript:changetitle('个人资料',this)"><i
-							class="fa fa-dashboard"></i> 个人资料</a></li>
-					<li><a id="qw" href="ScoreQuery.jsp"
-						class="waves-effect waves-dark" name="lead" target="mainFrame"
-						onclick="javascript:changetitle('成绩查询',this)"><i
-							class="fa fa-desktop"></i> 成绩查询</a></li>
-					<li><a href="ScoreAnalysis.jsp"
-						class="waves-effect waves-dark" name="lead" target="mainFrame"
+						href="thome.html" target="mainFrame"
+						onclick="javascript:changetitle('欢迎页',this)"><i
+							class="fa fa-dashboard"></i>欢迎页</a></li>
+					<li><a href="thome.html" class="waves-effect waves-dark"
+						name="lead" target="mainFrame"
+						onclick="javascript:changetitle('学生成绩',this)"><i
+							class="fa fa-desktop"></i>学生成绩</a></li>
+					<li><a href="thome.html" class="waves-effect waves-dark"
+						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('成绩分析',this)"><i
-							class="fa fa-bar-chart-o"></i> 成绩分析</a></li>
-					<li><a href="/UniversityOfShaft/diarylist.do"
+							class="fa fa-bar-chart-o"></i>成绩分析</a></li>
+					<li><a href="/UniversityOfShaft/tlistclass.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
-						onclick="javascript:changetitle('日志',this)"><i
-							class="fa fa-qrcode"></i> 日志</a></li>
+						onclick="javascript:changetitle('学生日志',this)"><i
+							class="fa fa-qrcode"></i>学生日志</a></li>
 
-					<li><a href="RewardsAndPunishment.jsp"
-						class="waves-effect waves-dark" name="lead" target="mainFrame"
-						onclick="javascript:changetitle('奖惩',this)"><i
-							class="fa fa-table"></i> 奖惩</a></li>
-					<li><a href="/UniversityOfShaft/listAssess.do"
+					<li><a href="thome.html" class="waves-effect waves-dark"
+						name="lead" target="mainFrame"
+						onclick="javascript:changetitle('学生奖惩',this)"><i
+							class="fa fa-table"></i>学生奖惩</a></li>
+					<li><a href="/UniversityOfShaft/listAssessTeac.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('评价',this)"><i
-							class="fa fa-edit"></i> 评价系统</a></li>
+							class="fa fa-edit"></i>评价</a></li>
+
 				</ul>
 
 			</div>
@@ -313,7 +310,7 @@
 		</nav>
 		<!-- /. NAV SIDE  -->
 
-		<iframe src="${path}jsp/PersonalData.jsp" id="mainFrame"
+		<iframe src="${path}jsp/teacher/thome.jsp" id="mainFrame"
 			name="mainFrame" width="100%" frameborder="no"></iframe>
 		<!-- /. PAGE WRAPPER  -->
 	</div>

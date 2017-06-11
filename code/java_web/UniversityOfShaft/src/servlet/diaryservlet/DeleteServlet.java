@@ -23,12 +23,18 @@ public class DeleteServlet extends HttpServlet {
 			//业务逻辑
 			DiaryDao ddao = new DiaryDao();
 			ddao.deleteDiary(diaryId);
+			req.setAttribute("mydel", "1"); //说明删除了东西
+			req.setAttribute("sucmessage", "1"); //表示删除成功
+			req.setAttribute("message", "删除成功！");
 			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (ThisSystemException e){
-			req.setAttribute("message", e.getMessage());
+			req.setAttribute("sucmessage", "0"); //表示未成功
+			req.setAttribute("message", "删除失败！");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		} catch (Exception e){
-			e.printStackTrace();
+			req.setAttribute("sucmessage", "0"); //表示未成功
 			req.setAttribute("message", "系统繁忙，请稍候再试!");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		}
 	}
 }
