@@ -118,6 +118,8 @@ $(function(){
     <li><a href="javascript:;"><img src="${path}assets/images/0.jpg"></a></li>
     <li><a href="javascript:;"><img src="${path}assets/images/1.jpg"></a></li>
     <li><a href="javascript:;"><img src="${path}assets/images/2.jpg"></a></li>
+    <li><a href="javascript:;"><img src="${path}assets/images/3.jpg"></a></li>
+    <li><a href="javascript:;"><img src="${path}assets/images/4.jpg"></a></li>
   </ul>
 </div>
 </body>

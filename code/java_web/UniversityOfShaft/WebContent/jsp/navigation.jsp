@@ -129,7 +129,7 @@
 		<ul id="dropdown1" class="dropdown-content">
 			<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人资料 </a></li>
 			<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置 </a></li>
-			<li><a href="Login.html"><i class="fa fa-sign-out fa-fw"></i>
+			<li><a href="${path}jsp/Login.jsp"><i class="fa fa-sign-out fa-fw"></i>
 					注销 </a></li>
 		</ul>
 		<ul id="dropdown2" class="dropdown-content w250">

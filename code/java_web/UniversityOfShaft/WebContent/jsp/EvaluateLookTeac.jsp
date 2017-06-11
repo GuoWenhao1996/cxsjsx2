@@ -43,7 +43,7 @@
 				<h1 class="page-header">评价</h1>
 				<ol class="breadcrumb">
 					<li><a href="#">主页</a></li>
-					<li><a href="/UniversityOfShaft/listAssess.do">评价</a></li>
+					<li><a href="/UniversityOfShaft/listAssessTeac.do">评价</a></li>
 					<!--<li class="active">数据</li>-->
 				</ol>
 
