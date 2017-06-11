@@ -298,7 +298,7 @@
 						onclick="javascript:changetitle('日志',this)"><i
 							class="fa fa-qrcode"></i> 日志</a></li>
 
-					<li><a href="RewardsAndPunishment.jsp"
+					<li><a href="/UniversityOfShaft/liststudenterewandpun.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('奖惩',this)"><i
 							class="fa fa-table"></i> 奖惩</a></li>

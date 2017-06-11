@@ -294,7 +294,7 @@
 						onclick="javascript:changetitle('学生日志',this)"><i
 							class="fa fa-qrcode"></i> 学生日志</a></li>
 
-					<li><a href="thome.html" class="waves-effect waves-dark"
+					<li><a href="/UniversityOfShaft/listtearewandpun.do" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生奖惩',this)"><i
 							class="fa fa-table"></i> 学生奖惩</a></li>
