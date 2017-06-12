@@ -27,6 +27,7 @@ public class AddRewardandpunishServlet extends HttpServlet {
 			String sRP_flag = req.getParameter("srp_flag");
 			String srp_time=req.getParameter("srp_time");
 			//业务逻辑          
+			System.out.println(stu_id);
 			RewardandpunishDao ddao = new RewardandpunishDao();
 			rewardandpunishEntity de = new rewardandpunishEntity();
 			de.setSRP_ID(DBUtil.uuid());

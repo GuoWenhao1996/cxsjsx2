@@ -44,7 +44,7 @@ public class AddTeacAssOthersServlet extends HttpServlet {
 			ae.setA_PersonNo(tno);// 老师
 			ae.setA_DataTime(ThisSystemUtil.getSystemTime());
 			ae.setA_Context(assess);
-			ae.setA_Relationship(relationship);
+			ae.setA_Relationship(relationship.toUpperCase());
 			assDao.insertTeacAss(ae);
 
 			// 学生列表

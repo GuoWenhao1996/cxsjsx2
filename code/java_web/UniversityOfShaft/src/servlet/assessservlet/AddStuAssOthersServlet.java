@@ -47,7 +47,7 @@ public class AddStuAssOthersServlet extends HttpServlet {
 			ae.setA_PersonNo(sno);// 学生A
 			ae.setA_DataTime(ThisSystemUtil.getSystemTime());
 			ae.setA_Context(assess);
-			ae.setA_Relationship(relationship);
+			ae.setA_Relationship(relationship.toUpperCase());
 			assDao.insertStuAss(ae);
 
 			// 教师对学生的评价

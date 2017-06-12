@@ -38,13 +38,13 @@ public class RewardandpunishDao {
 		List<rewardandpunishEntity> delist = new LinkedList<>();
 		Connection connection = DBUtil.getConnection();
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select * from t_sturewpun where Stu_SNo=? and SRP_flag=? order by SRP_flag");
+		sql.append(" select * from t_sturewpun  where Stu_SNo=? and SRP_flag=? order by SRP_flag");
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.setString(1, sno);
 		ps.setString(2, flag);
 		ResultSet rs = ps.executeQuery(); //得到结果
 		while(rs.next()) {
-			delist.add(this.rowsEntity(rs));
+			delist.add(this.sturowsEntity(rs));
 		}
 		return delist;
 	}
@@ -52,7 +52,7 @@ public class RewardandpunishDao {
 		List<rewardandpunishEntity> delist = new LinkedList<>();
 		Connection connection = DBUtil.getConnection();
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select * from t_sturewpun  where SRP_flag='1'  order by Stu_SNo");
+		sql.append(" select Stu_Name,t_sturewpun.Stu_SNo,SRP_ID,SRP_flag,SRP_Info,SRP_Time from t_stuinfo,t_sturewpun  where t_stuinfo.Stu_SNo=t_sturewpun.Stu_SNo  and SRP_flag='1' order by Stu_SNo");
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ResultSet rs = ps.executeQuery(); //得到结果
 		while(rs.next()) {
@@ -64,7 +64,7 @@ public class RewardandpunishDao {
 		List<rewardandpunishEntity> delist = new LinkedList<>();
 		Connection connection = DBUtil.getConnection();
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select * from t_sturewpun  where SRP_flag='0' order by Stu_SNo");
+		sql.append(" select Stu_Name,t_sturewpun.Stu_SNo,SRP_ID,SRP_flag,SRP_Info,SRP_Time from t_stuinfo,t_sturewpun  where t_stuinfo.Stu_SNo=t_sturewpun.Stu_SNo  and SRP_flag='0' order by Stu_SNo");
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ResultSet rs = ps.executeQuery(); //得到结果
 		while(rs.next()) {
@@ -82,22 +82,9 @@ public class RewardandpunishDao {
 		rs.next();
 	    return (this.rowsEntity(rs));
 	}
-	public void deleterewardandpunish(String rpid) throws Exception {
-		//连接数据库
-		Connection connection = DBUtil.getConnection();
-		//构建sql语句
-		StringBuilder sql = new StringBuilder();
-		sql.append(" delete from t_sturewpun where SRP_ID=? ");
-		//传入sql参数
-		PreparedStatement ps = connection.prepareStatement(sql.toString());
-		ps.setString(1, rpid);
-		ps.executeUpdate();
-	}
+	
 	/**
 	 * 打印数据
-	 * @param rs
-	 * @return
-	 * @throws SQLException
 	 */
 	private rewardandpunishEntity rowsEntity(ResultSet rs) throws SQLException {
 		rewardandpunishEntity de = new rewardandpunishEntity();
@@ -106,6 +93,17 @@ public class RewardandpunishDao {
 		de.setSRP_Time(rs.getString("SRP_Time"));
 		de.setSRP_Info(rs.getString("SRP_Info"));
 		de.setSRP_flag(rs.getString("SRP_flag"));
+		de.setUS_Name(rs.getNString("Stu_Name"));
 		return de;
 	}
+	private rewardandpunishEntity sturowsEntity(ResultSet rs) throws SQLException {
+		rewardandpunishEntity de = new rewardandpunishEntity();
+		de.setSRP_ID(rs.getString("SRP_ID"));
+		de.setStu_SNo(rs.getString("Stu_SNo"));
+		de.setSRP_Time(rs.getString("SRP_Time"));
+		de.setSRP_Info(rs.getString("SRP_Info"));
+		de.setSRP_flag(rs.getString("SRP_flag"));
+		return de;
+	}
+	
 }

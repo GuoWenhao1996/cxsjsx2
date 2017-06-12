@@ -56,7 +56,6 @@
                                 <table class="table table-striped table-bordered table-hover" id="reward_table">
                                     <thead>
                                     <tr>
-                                        <th>获奖编号</th>
                                          <th>获奖时间</th>
                                         <th>获奖内容</th>
                                     </tr>
@@ -64,7 +63,6 @@
                                     <tbody>
 											<c:forEach var="as0" items="${list1}" varStatus="vs">
 													<tr class="odd gradeX">
-													<td>${as0.getSRP_ID()}</td>
 													<td>${as0.getSRP_Time()}</td>
 													<td>${as0.getSRP_Info()}</td>
 													</tr>
@@ -90,7 +88,6 @@
                                 <table class="table table-striped table-bordered table-hover" id="punishment_table">
                                     <thead>
                                     <tr>
-                                        <th>惩罚编号</th>
                                         <th>惩罚时间</th>
                                         <th>惩罚内容</th>
                                     </tr>
@@ -98,7 +95,6 @@
                                       <tbody>
 											<c:forEach var="as1" items="${list0}" varStatus="vs">
 													<tr class="odd gradeX">
-													<td>${as1.getSRP_ID()}</td>
 													<td>${as1.getSRP_Time()}</td>
 													<td>${as1.getSRP_Info()}</td>
 													</tr>
