@@ -130,8 +130,6 @@
 		</nav>
 		<!-- Dropdown Structure -->
 		<ul id="dropdown1" class="dropdown-content">
-			<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人资料 </a></li>
-			<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置 </a></li>
 			<li><a href="${path}jsp/Login.jsp"><i
 					class="fa fa-sign-out fa-fw"></i> 注销 </a></li>
 		</ul>
@@ -282,7 +280,7 @@
 				<ul class="nav" id="main-menu">
 
 					<li><a class="active-menu waves-effect waves-dark" name="lead"
-						href="PersonalData.jsp" target="mainFrame"
+						href="/UniversityOfShaft/loadpersonaldata.do" target="mainFrame"
 						onclick="javascript:changetitle('个人资料',this)"><i
 							class="fa fa-dashboard"></i> 个人资料</a></li>
 					<li><a id="qw" href="/UniversityOfShaft/Queryallscore.do"
@@ -313,7 +311,7 @@
 		</nav>
 		<!-- /. NAV SIDE  -->
 
-		<iframe src="${path}jsp/PersonalData.jsp" id="mainFrame"
+		<iframe src="/UniversityOfShaft/loadpersonaldata.do" id="mainFrame"
 			name="mainFrame" width="100%" frameborder="no"></iframe>
 		<!-- /. PAGE WRAPPER  -->
 	</div>

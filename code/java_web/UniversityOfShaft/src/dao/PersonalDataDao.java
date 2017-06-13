@@ -2,6 +2,7 @@
 package dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 
@@ -44,7 +45,7 @@ public class PersonalDataDao {
 		ps.executeUpdate(); // 执行
 		DBUtil.closeConnection();
 	}
-
+	
 	public void insert(PersonalDataEntity pe[]) {
 		// 连接数据库
 		Connection connection = null;
@@ -97,11 +98,49 @@ public class PersonalDataDao {
 		} finally {
 			try {
 				connection.setAutoCommit(true);
-				DBUtil.closeConnection();
+				connection.close();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
 		}
-
+	}
+	
+	/**
+	 * 根据学生学号查找到信息
+	 * @param sno
+	 * @return
+	 */
+	public PersonalDataEntity selectBySNo(String sno) throws Exception {
+		Connection connection = DBUtil.getConnection();
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select * from t_stuinfo where Stu_SNo=?");
+		PreparedStatement ps = connection.prepareStatement(sql.toString());
+		ps.setString(1, sno);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+	    return (this.rowsEntity(rs));
+	}
+	
+	/**
+	 * 打印数据
+	 * @param rs
+	 * @return
+	 * @throws SQLException
+	 */
+	private PersonalDataEntity rowsEntity(ResultSet rs) throws SQLException {
+		PersonalDataEntity pde = new PersonalDataEntity();
+		pde.setStu_SNo(rs.getString("Stu_SNo"));
+		pde.setStu_Name(rs.getString("Stu_Name"));
+		pde.setStu_ClassName(rs.getString("Stu_ClassName"));
+		pde.setStu_Sex(rs.getString("Stu_Sex"));
+		pde.setStu_Id(rs.getString("Stu_Id"));
+		pde.setStu_Nation(rs.getString("Stu_Nation"));
+		pde.setStu_Bir(rs.getString("Stu_Bir"));
+		pde.setStu_Tel(rs.getString("Stu_Tel"));
+		pde.setStu_Home(rs.getString("Stu_Home"));
+		pde.setStu_From(rs.getString("Stu_From"));
+		pde.setStu_Photo(rs.getString("Stu_Photo"));
+		pde.setStu_Assess(rs.getString("Stu_Assess"));
+		return pde;
 	}
 }
