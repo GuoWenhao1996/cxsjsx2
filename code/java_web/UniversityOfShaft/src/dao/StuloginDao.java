@@ -27,8 +27,11 @@ public class StuloginDao {
 		ps.setString(1, Sno);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
-			return this.row2entity(rs);
+			StuloginEntity se=this.row2entity(rs);
+			DBUtil.closeConnection();
+			return se;
 		}
+		DBUtil.closeConnection();
 		return null;		
 	}
 	/**

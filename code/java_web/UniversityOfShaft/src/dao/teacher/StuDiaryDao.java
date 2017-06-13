@@ -35,6 +35,7 @@ public class StuDiaryDao {
 			pdelistc[index] = rs1.getString(1);
 			index++;
 		}
+		DBUtil.closeConnection();
 		return pdelistc;
 	}
 	
@@ -55,6 +56,7 @@ public class StuDiaryDao {
 		while(rs.next()) {
 			pdelistcs.add(this.rowsEntity(rs));
 		}
+		DBUtil.closeConnection();
 		return pdelistcs;
 	}
 	
@@ -72,7 +74,9 @@ public class StuDiaryDao {
 		ps.setString(1, sno);
 		ResultSet rs = ps.executeQuery(); //得到结果
 		rs.next();
-		return (this.rowsEntity(rs));
+		PersonalDataEntity pd=this.rowsEntity(rs);
+		DBUtil.closeConnection();
+		return pd;
 	}
 	
 	/**

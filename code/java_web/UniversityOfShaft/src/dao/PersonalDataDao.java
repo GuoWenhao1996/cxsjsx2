@@ -42,6 +42,7 @@ public class PersonalDataDao {
 		ps.setString(11, pe.getStu_Photo());
 		ps.setString(12, pe.getStu_Assess());
 		ps.executeUpdate(); // 执行
+		DBUtil.closeConnection();
 	}
 
 	public void insert(PersonalDataEntity pe[]) {
@@ -96,7 +97,7 @@ public class PersonalDataDao {
 		} finally {
 			try {
 				connection.setAutoCommit(true);
-				connection.close();
+				DBUtil.closeConnection();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

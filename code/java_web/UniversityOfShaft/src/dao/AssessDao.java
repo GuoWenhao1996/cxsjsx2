@@ -47,6 +47,7 @@ public class AssessDao {
 		ps.setString(6, ae.getA_Relationship());
 		// 执行sql
 		ps.executeUpdate();
+		DBUtil.closeConnection();
 	}
 
 	/**
@@ -76,6 +77,7 @@ public class AssessDao {
 		ps.setString(6, ae.getA_Relationship());
 		// 执行sql
 		ps.executeUpdate();
+		DBUtil.closeConnection();
 	}
 
 	/**
@@ -101,6 +103,7 @@ public class AssessDao {
 		ps.setString(2, sno);
 		// 执行sql
 		ps.executeUpdate();
+		DBUtil.closeConnection();
 	}
 
 	/**
@@ -125,8 +128,10 @@ public class AssessDao {
 		// 构建游标并执行
 		ResultSet rs = ps.executeQuery();
 		rs.next();
+		String selfAss=rs.getString(1);
+		DBUtil.closeConnection();
 		// 调用rowsEntity()将游标数据转化为实体
-		return rs.getString(1);
+		return selfAss;
 	}
 
 	/**
@@ -152,7 +157,9 @@ public class AssessDao {
 		ResultSet rs = ps.executeQuery();
 		rs.next();
 		// 调用rowsEntity()将游标数据转化为实体
-		return (this.rowsEntity(rs));
+		AssessEntity ae=this.rowsEntity(rs);
+		DBUtil.closeConnection();
+		return ae;
 	}
 
 	/**
@@ -191,6 +198,7 @@ public class AssessDao {
 			stu[index][2] = rs.getString(3);
 			index++;
 		}
+		DBUtil.closeConnection();
 		return stu;
 	}
 	/**
@@ -229,6 +237,7 @@ public class AssessDao {
 			stu[index][2] = rs.getString(3);
 			index++;
 		}
+		DBUtil.closeConnection();
 		return stu;
 	}
 	/**
@@ -270,6 +279,7 @@ public class AssessDao {
 			stu[index][3] = rs.getString(4);
 			index++;
 		}
+		DBUtil.closeConnection();
 		return stu;
 	}
 
@@ -312,6 +322,7 @@ public class AssessDao {
 			stu[index][3] = rs.getString(4);
 			index++;
 		}
+		DBUtil.closeConnection();
 		return stu;
 	}
 
@@ -344,6 +355,7 @@ public class AssessDao {
 		while (rs.next()) {
 			asList.add(this.rowsEntity(rs));
 		}
+		DBUtil.closeConnection();
 		return asList;
 	}
 
@@ -377,6 +389,7 @@ public class AssessDao {
 		while (rs.next()) {
 			asList.add(this.rowsEntity(rs));
 		}
+		DBUtil.closeConnection();
 		return asList;
 	}
 

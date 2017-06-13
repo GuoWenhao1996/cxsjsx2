@@ -32,6 +32,7 @@ public class DiaryDao {
 		ps.setString(5, de.getL_Detail());
 		ps.setString(6, de.getL_Limits());
 		ps.executeUpdate(); //执行
+		DBUtil.closeConnection();
 	}
 	
 	/**
@@ -53,6 +54,7 @@ public class DiaryDao {
 		while(rs.next()) {
 			delist.add(this.rowsEntity(rs));
 		}
+		DBUtil.closeConnection();
 		return delist;
 	}
 	
@@ -70,7 +72,9 @@ public class DiaryDao {
 		ps.setString(1, lid);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-	    return (this.rowsEntity(rs));
+		DiaryEntity de=this.rowsEntity(rs);
+		DBUtil.closeConnection();
+	    return de;
 	}
 	
 	/**
@@ -93,6 +97,7 @@ public class DiaryDao {
 		ps.setString(4, de.getL_Limits());
 		ps.setString(5, de.getL_ID());
 		ps.executeUpdate(); //执行
+		DBUtil.closeConnection();
 	}
 	
 	/**
@@ -110,6 +115,7 @@ public class DiaryDao {
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.setString(1, lid);
 		ps.executeUpdate();
+		DBUtil.closeConnection();
 	}
 	
 	/**

@@ -28,8 +28,11 @@ public class TealoginDao {
 		ps.setString(1, Sno);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next()) {
-			return this.row2entity(rs);
+			TealoginEntity te=this.row2entity(rs);
+			DBUtil.closeConnection();
+			return te;
 		}
+		DBUtil.closeConnection();
 		return null;		
 	}
 	/**

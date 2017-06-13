@@ -62,7 +62,7 @@ $(function(){
 <div id="tab">
   <ul class="tab_menu">
     <li class="selected">学生登录</li>
-    <li>导师登录</li>
+    <li>教师登录</li>
   </ul>
   <div class="tab_box">
     <!-- 学生登录开始 -->
@@ -88,7 +88,7 @@ $(function(){
       </form>
     </div>
     <!-- 学生登录结束-->
-    <!-- 导师登录开始-->
+    <!-- 教师登录开始-->
     <div class="hide">
       <div class="tea_error_box"></div>
       <form action="/UniversityOfShaft/TeaLogin.do" method="post" class="tea_login_error">
@@ -110,7 +110,7 @@ $(function(){
         </div>
       </form>
     </div>
-    <!-- 导师登录结束-->
+    <!-- 教师登录结束-->
   </div>
 </div>
 <div class="screenbg">
