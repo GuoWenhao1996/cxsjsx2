@@ -21,6 +21,7 @@ public class StuLoginServlet extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try{
 			req.setCharacterEncoding("utf-8");
+			System.out.println("ready："+ThisSystemUtil.getSystemTime());
 			String account=req.getParameter("username");
 			String password=req.getParameter("password");
 			if(ThisSystemUtil.isNone(account)){
@@ -42,12 +43,16 @@ public class StuLoginServlet extends HttpServlet{
 			Cookie cookieNo = new Cookie("cookieNo", account); 
 			cookieNo.setMaxAge(60*60);
 			res.addCookie(cookieNo);
+			System.out.println("go："+ThisSystemUtil.getSystemTime());
+			System.out.println("sno："+account);
 			req.getRequestDispatcher("/jsp/navigation.jsp").forward(req, res);
 			return;
 		}catch(ThisSystemException e){
+			System.out.println("stu-errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr："+ThisSystemUtil.getSystemTime());
 			req.setAttribute("message", e.getMessage());
 		}catch(Exception e){
 			e.printStackTrace();
+			System.out.println("stu-errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr："+ThisSystemUtil.getSystemTime());
 			req.setAttribute("message", "登录失败");
 		}
 		req.getRequestDispatcher("/jsp/Login.jsp").forward(req, res);

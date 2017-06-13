@@ -285,11 +285,11 @@
 						href="PersonalData.jsp" target="mainFrame"
 						onclick="javascript:changetitle('个人资料',this)"><i
 							class="fa fa-dashboard"></i> 个人资料</a></li>
-					<li><a id="qw" href="ScoreQuery.jsp"
+					<li><a id="qw" href="/UniversityOfShaft/Queryallscore.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('成绩查询',this)"><i
 							class="fa fa-desktop"></i> 成绩查询</a></li>
-					<li><a href="ScoreAnalysis.jsp"
+					<li><a href="/UniversityOfShaft/Analysisscore.do?term=1"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('成绩分析',this)"><i
 							class="fa fa-bar-chart-o"></i> 成绩分析</a></li>
