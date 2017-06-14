@@ -26,10 +26,6 @@ public class UpdateServlet extends HttpServlet {
 			String strTitle = req.getParameter("mytitle");
 			String strContext = req.getParameter("mycontext");
 			String strLimits = req.getParameter("radio01");
-			System.out.println(streditId);
-			System.out.println(strTitle);
-			System.out.println(strContext);
-			System.out.println(strLimits);
 			//业务逻辑
 			DiaryDao ddao = new DiaryDao();
 			DiaryEntity de = new DiaryEntity();

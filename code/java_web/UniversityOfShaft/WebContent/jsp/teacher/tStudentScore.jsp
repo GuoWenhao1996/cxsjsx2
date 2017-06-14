@@ -29,18 +29,18 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="${path}assets/js/Lightweight-Chart/cssCharts.css">
 </head>
-<body onload="showDiaryOrNot()">
+<body onload="showStuOrNot()">
 <div id="wrapper">
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
         <div class="header">
             <h1 class="page-header">
-                日志详情
+                学生成绩
             </h1>
             <ol class="breadcrumb">
-                <li><a href="${path}jsp/teacher/tnavigation.jsp">主页</a></li>
-                <li><a href="/UniversityOfShaft/tlistclass.do">学生日志</a></li>
-                <li class="active">日志详情</li>
+                <li><a href="${path}jsp/teacher/thome.jsp">主页</a></li>
+                <!--<li><a href="#">表格</a></li>-->
+                <li href="" class="active">学生成绩</li>
             </ol>
 
         </div>
@@ -48,34 +48,31 @@
         <div id="page-inner">
 
             <!-- /. ROW  -->
-            <div id="div-studiarylist" class="row">
+            <div id="div-classlist" class="row">
                 <div class="col-md-12">
                     <!--   Basic Table  -->
                     <div class="card">
-                    	<div id="div-show01" class="card-action">
-                            <a href="/UniversityOfShaft/tlistclass.do">返回列表</a>
-                        </div>
                         <div class="card-action">
-                            班级人员
+                            班级情况
                         </div>
                         <div class="card-content">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                     <tr>
-                                        <th class="center">学号</th>
-                                        <th class="center">姓名</th>
-                                        <th class="center">性别</th>
-                                        <th class="center">日志</th>
+                                        <th>学院</th>
+                                        <th>专业</th>
+                                        <th>班级</th>
+                                        <th>查看</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="vo" items="${list0}" varStatus="vs">
+                                    <c:forEach var="vo" items="${lsd}" varStatus="vs">
                                     <tr>
-                                        <td class="center">${stuinfo.getStu_SNo()}</td>
-                                        <td class="center">${stuinfo.getStu_Name()}</td>
-                                        <td class="center">${stuinfo.getStu_Sex()}</td>
-                                        <td class="center"><a href="/UniversityOfShaft/tshowonestudiary.do?diaryid=${vo.getL_ID()}&strsno=${stuinfo.getStu_SNo()}">${vo.getL_Title()}</a></td>
+                                        <td>信息学院</td>
+                                        <td>计算机科学与技术</td>
+                                        <td>${lsd[vs.index]}</td>
+                                        <td><a href="/UniversityOfShaft/tshowclass.do?classname=${lsd[vs.index]}">查看</a></td>
                                     </tr>
                                     </c:forEach>
                                     </tbody>
@@ -87,27 +84,45 @@
                 </div>
             </div>
 
-            <div id="div-studiaryshow" class="row">
-                <!--显示日志-->
-                <div id="div-show" class="col-lg-12">
+            <div id="div-classstu" class="row">
+                <div class="col-md-12">
+                    <!-- Advanced Tables -->
                     <div class="card">
+                        <div class="card-action">
+                            ${cname}
+                        </div>
                         <div class="card-content">
-                            <div id="div-show02">
-                                <div id="div-showtitle">
-                                    <p>${sd.getL_Title()}</p>
-                                </div>
-                                <div id="div-showcontent">
-                                    <div>
-                                        <h4>
-                                            ${sd.getL_Detail()}
-                                        </h4>
-                                    </div>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                    <thead>
+                                    <tr>
+                                        <th class="center">学号</th>
+                                        <th class="center">姓名</th>
+                                        <th class="center">性别</th>
+                                        <th class="center">查询成绩</th>
+                                        <th class="center">成绩分析</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="vo" items="${callstu}" varStatus="vs">
+                                    <tr class="odd gradeA">
+                                        <td class="center">${vo.getStu_SNo()}</td>
+                                        <td class="center">${vo.getStu_Name()}</td>
+                                        <td class="center">${vo.getStu_Sex()}</td>
+                                        <td class="center"><a href="/UniversityOfShaft/liststuscore.do?strsno=${vo.getStu_SNo()}">查看成绩</a></td>
+                                        <td class="center"><a href="/UniversityOfShaft/ScoreAnalysis.do?strsno=${vo.getStu_SNo()}&term=1">成績分析</a></td>
+                                    </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
+
                         </div>
                     </div>
+                    <!--End Advanced Tables -->
                 </div>
             </div>
+
 
             <footer>
                 <p>Copyright &copy; 2016.Company name All rights reserved.
@@ -149,21 +164,19 @@
             $('#dataTables-example').dataTable();
         });
         
-        function showDiaryOrNot() {
-        	if("${sld}"=="1") { //日记列表界面显示
-    			document.getElementById("div-studiaryshow").style.display = "none";
-    	        document.getElementById("div-studiarylist").style.display = "";
+        function showStuOrNot() {
+        	if("${clist}"=="1") { //日记列表界面显示
+    			document.getElementById("div-classstu").style.display = "none";
+    	        document.getElementById("div-classlist").style.display = "";
     		}
-        	else if("${sod}"=="1") { //日记列表界面显示
-    			document.getElementById("div-studiarylist").style.display = "";
-    	        document.getElementById("div-studiaryshow").style.display = "";
+        	else if("${classshow}"=="1") { //日记列表界面显示
+    			document.getElementById("div-classstu").style.display = "";
+    	        document.getElementById("div-classlist").style.display = "";
     		}
         }
-        
     </script>
     <!-- Custom Js -->
     <script src="${path}assets/js/custom-scripts.js"></script>
-
 
 </body>
 

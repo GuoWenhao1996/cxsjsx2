@@ -61,7 +61,6 @@
 	}
 </script>
 </head>
-
 <body>
 	<div id="wrapper">
 				<%
@@ -279,14 +278,10 @@
 						href="${path}jsp/thome.html" target="mainFrame"
 						onclick="javascript:changetitle('欢迎页',this)"><i
 							class="fa fa-dashboard"></i> 欢迎页</a></li>
-					<li><a href="${path}jsp/thome.html"
+					<li><a href="/UniversityOfShaft/listofclass.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生成绩',this)"><i
 							class="fa fa-desktop"></i> 学生成绩</a></li>
-					<li><a href="thome.html" class="waves-effect waves-dark"
-						name="lead" target="mainFrame"
-						onclick="javascript:changetitle('成绩分析',this)"><i
-							class="fa fa-bar-chart-o"></i> 成绩分析</a></li>
 					<li><a href="/UniversityOfShaft/tlistclass.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生日志',this)"><i

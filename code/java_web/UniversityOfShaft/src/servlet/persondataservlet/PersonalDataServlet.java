@@ -26,7 +26,6 @@ public class PersonalDataServlet extends HttpServlet{
 			PersonalDataDao peddao = new PersonalDataDao();
 			pde = peddao.selectBySNo(sno);
 			req.setAttribute("pd", pde);
-			System.out.println(pde.getStu_Name());
 			req.getRequestDispatcher("/jsp/PersonalData.jsp").forward(req, res);
 			return;
 		}catch(ThisSystemException e){

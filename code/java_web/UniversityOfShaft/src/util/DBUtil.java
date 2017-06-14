@@ -81,14 +81,11 @@ public class DBUtil {
 	 */
 	public static String getCookieno(HttpServletRequest request) throws UnsupportedEncodingException{
 		String name=null;
-		System.out.println("进入");
 		Cookie Cookies[] = request.getCookies();
 		if (Cookies != null) {
 			for (int n = 0; n < Cookies.length; n++) {
 				Cookie newCookie = Cookies[n];
-				System.out.println("寻找");
 				if (newCookie.getName().equals("cookieNo")) {
-					System.out.println("找到");
 					name = newCookie.getValue();
 					name = java.net.URLDecoder.decode(name, "UTF-8");
 				}

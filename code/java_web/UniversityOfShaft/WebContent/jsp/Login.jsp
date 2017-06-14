@@ -69,6 +69,7 @@ $(function(){
     <div>
       <div class="stu_error_box"></div>
       <form   action="/UniversityOfShaft/StuLogin.do" method="post" class="stu_login_error">
+               <h3>${message}</h3>
         <div id="username">
           <label>学&nbsp;&nbsp;&nbsp;号：</label>
           <input type="text" id="stu_username_hide" name="username" placeholder="输入学号" nullmsg="学号不能为空！" datatype="s6-18" errormsg="学号范围在6~18个字符之间！" sucmsg="学号验证通过！" class="input"/>

@@ -33,7 +33,7 @@ public class StuLoginServlet extends HttpServlet{
 			StuloginDao dao=new StuloginDao();
 			StuloginEntity u=dao.selectBySno(account);
 			if(u==null){
-				throw new ThisSystemException("不存在此账号");
+				throw new ThisSystemException("此学生账号不存在");
 			}
 			if(!u.getUS_Password().equals(password)){
 				throw new ThisSystemException("密码错误");

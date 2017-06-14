@@ -33,7 +33,7 @@ public class TeaLoginServlet extends HttpServlet{
 			TealoginDao dao=new TealoginDao();
 			TealoginEntity u=dao.selectBySno(account);
 			if(u==null){
-				throw new ThisSystemException("不存在此账号");
+				throw new ThisSystemException("此教师账号不存在");
 			}
 			if(!u.getUT_Password().equals(password)){
 				throw new ThisSystemException("密码错误");

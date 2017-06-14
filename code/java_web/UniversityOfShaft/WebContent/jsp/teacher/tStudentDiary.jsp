@@ -38,7 +38,7 @@
                 学生日志
             </h1>
             <ol class="breadcrumb">
-                <li><a href="${path}jsp/teacher/thome.jsp">大学轴</a></li>
+                <li><a href="${path}jsp/teacher/thome.jsp">主页</a></li>
                 <!--<li><a href="#">表格</a></li>-->
                 <li href="" class="active">学生日志</li>
             </ol>
